@@ -47,9 +47,9 @@ These URLs were then used to scrape the actual article and retreive the text, he
 
 Guardian articles were scraped using its free api.<br>
 
-The two datasets were then linked, where possible, on the article headline/tweet summary. If they were different, the article was retrieved using the URL links returned by the tweet scraper<br>
+The two datasets were then linked as below...
 
-The final dataset contains all articles, and all tweets, linked where possible.<br>
+<img src="Viz/BreakingEven (2).jpg" style="width: 700px;"/>
 
 
 ### Methods
