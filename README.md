@@ -47,7 +47,7 @@ These URLs were then used to scrape the actual article and retreive the text, he
 
 Guardian articles were scraped using its free api.<br>
 
-The two datasets were then linked as below...
+The two datasets were then linked as below...<br>
 
 <img src="Viz/BreakingEven (2).jpg" style="width: 700px;"/>
 
