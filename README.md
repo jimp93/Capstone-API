@@ -1,8 +1,7 @@
 # Project Overview
 
-The FingerprintNews api utilises the latest developemnts in Natural Langauge Processing to create a suite of tools to be used in newsrooms to speed up headline writing and tweet generation, detect potential bias in copy and guide social media content to maximise interactions. <br>
-
-. <br>
+FingerprintNews is an api that utilises the latest developemnts in Natural Langauge Processing to create a suite of tools to be used in newsrooms to speed up headline writing and tweet generation, detect potential bias in copy and guide social media content to maximise interactions. <br>
+<br>
 
 
 <img src="images/shutterstock_2131280571.jpg" style="width: 700px;"/>
@@ -14,21 +13,25 @@ The FingerprintNews api utilises the latest developemnts in Natural Langauge Pro
 
 Trust in print media is at an all-time low, according to a 2022 Gallup poll. <br>
 
+<img src="gall.jpg" style="width: 700px;"/>
 
+The latest generation of NLP 'tranformer' models, similar to those that power Google's search engine, are able to encode the secrets of language with an increasing degree of complexity. Like the human body using DNA code to produce different parts, these models can decode these secrets and put them to use on various tasks, opening the door to a whole new field of analysis and accountability within newsrooms.<br>
 
-Much of the focus in the industry has been on so-called 'fake news', with fact-checking now a booming sector. <br>
+The industry has focussed heavily on so-called 'fake news', with fact-checking now a booming sector, but less attention has been paid to how the use of language has affected people's perception of the news media.<br>
 
-But less attention has been paid to sloppy journalism brought about by the increasing need for speedy copy, and to the blurring of the lines between the news pages and opinion section <br>
+FingerprintNews harnesses the power of the latest generation of machine learning language models, similar to those used by Google's search function, to make a start in tackling these problems. <br>
 
-BreakingEven harnesses the power of the latest generation of machine learning language models, similar to those used by Google's search function, to make a start in tackling these problems <br>
+These models promise to reveal the secrets of language in the same way that the unravelling of gene did for the human body. Like the human body, these models can encode and decode these secrets in service of a wide range of tasks, and promise to be a fixture in newsrooms of the future.<br>
 
-The api can be used by journalists to generate accurate headlines on the fly, by subeditors to flag up when opinion is creeping into news stories, and by social media teams to quickly curate output. <br>
+FingerprintNews can currently be used by journalists to generate accurate and balanced headlines on the fly, by subeditors to identify when opinionated language is appearing in news stories, and by social media teams to quickly curate output for maximum reach.<br>
+
+But this is just the beginning, with the number of potential newsroom applications only limited by the imagination. 
 
 <img src="images/shutterstock_1730598724.jpg" style="width: 700px;"/>
 <br>
 <br>
 
-# Layout of code
+# Code layout
 
 Given memory considerations, GitHub file size restrictions and the processing power of Google Colab, the code is split between GitHub and Colab. The Colab folder can be shared on request.<br>
 
