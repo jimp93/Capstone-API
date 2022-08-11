@@ -1,6 +1,6 @@
-## Project Overview
+# Project Overview
 
-The BreakingEven api is a tool to be used in newsrooms to speed up headline writing and tweet generation, detect potential bias in copy and guide social media content to maximise interactions. <br>
+The FingerprintNews api utilises the latest developemnts in Natural Langauge Processing to create a suite of tools to be used in newsrooms to speed up headline writing and tweet generation, detect potential bias in copy and guide social media content to maximise interactions. <br>
 
 . <br>
 
@@ -10,9 +10,11 @@ The BreakingEven api is a tool to be used in newsrooms to speed up headline writ
 <br>
 <br>
 
-### Business Problem
+# Business Problem
 
-Trust in print media is at an all-time low, according to . <br>
+Trust in print media is at an all-time low, according to a 2022 Gallup poll. <br>
+
+
 
 Much of the focus in the industry has been on so-called 'fake news', with fact-checking now a booming sector. <br>
 
@@ -26,33 +28,37 @@ The api can be used by journalists to generate accurate headlines on the fly, by
 <br>
 <br>
 
-### Layout of code
+# Layout of code
 
-Given memory considerations, GitHub file size restrictions and the processing power of Google Colab, the code is split up between GitHub and Colab. The Colab folder can be shared on request.<br>
+Given memory considerations, GitHub file size restrictions and the processing power of Google Colab, the code is split between GitHub and Colab. The Colab folder can be shared on request.<br>
 
-Data collection duties were shared across these platforms, as detailed below, while the rest of the code is on Colab.<br>
+Data collection duties were shared across these platforms, with data exported and imported between the two, as detailed below. The rest of the code is on Colab.<br>
 
 
-### The Data
+# The Data
 
 The models were trained on 1.3 million news articles and 1.8 million tweets from five outlets: CNN, Fox News, The Gaurdian, Reuters and the BBC.<br>
 
-Free-to-use python library [snscrape](https://github.com/JustAnotherArchivist/snscrape), was used to scrape the tweets. It returns the tweet text, URL links within the tweet and metrics such as likes and retweets for tweets between specified dates for specified accounts.
+Free-to-use python library [snscrape](https://github.com/JustAnotherArchivist/snscrape), was used to scrape the tweets. It returns the tweet text, URL links within the tweet and metrics such as likes and retweets.
+
+Code for this is in global_scripts/twitterScrape.py.<br>
 
 For those able to afford $1500, the articles can all be retrieved from the [News Api](https://newsapi.org) module.<br>
 
 This example instead used the Internet [Wayback Machine](https://archive.org/web/) to retrieve the links to articles hosted on the outlet's homepage, going back to 2013.<br>
 
-These URLs were then used to scrape the actual article and retreive the text, headline, category, and date.<br>
+These URLs were then used to scrape the actual article and retreive the text, headline, category, and date. Guardian articles were scraped using its free api.<br>
 
-Guardian articles were scraped using its free api.<br>
+Code for this step is is in pipe_x/scripts/x_scrape_py.<br>
 
 The two datasets were then linked as below...<br>
 
-<img src="Viz/BreakingEven (2).jpg" style="width: 700px;"/>
+<img src="Viz/BreakingEven (2).jpg" style="width: 1000px;"/>
+
+The clean.eda scripts in each folder create another dataframe of features for each outlet, for instance article text with no stopwords, which is then exported to Colab.<br>
 
 
-### Methods
+# Methods
 
 ## Headline and tweet summarizers
 
