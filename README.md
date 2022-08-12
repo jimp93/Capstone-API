@@ -71,25 +71,38 @@ The aim was therefore to create an inferential model which can actually learn co
 
 The first inferential model is an 'lstm', the type used before the rise in popularity of transformer models. The lstm model uses cells that store the state of model so that relationships of words that appear close together and far apart can be encoded, allowing us to feed in long articles.<br>
 <br>
-**A long-term short-term memory cell**
-
-<img src="lstm.png" align=center style="width: 500px;"/>
+<br>
+**A repeating long-term short-term memory cell**
+<br>
+<br>
+<img src="lstm1.png" align=center style="width: 700px;"/>
+<br>
 <br>
 (Source : http://colah.github.io/posts/2015-08-Understanding-LSTMs)
 <br>
 <br>
 
-The encoded article was trained against the articles headline. In production, the article text is fed into an encoder, which then generates a predicted headline, one word at a time.<br>
+The model trained the article text against its headline. In production, the article text is encoded by the trained model, and then decoded to generate a predicted headline, one word at a time.<br>
 
 The models actually used in the API are T5 transformer models developed by Google. These models build on the lstm's capabilities, but are also able to encode words depending on their context, for instance learning the different meanings of words like 'bank' depending on other words in the sequence.<br>
 
-Different 'heads' in the model learn different linguistic relationships, which can be visualised by the Bertviz module. While our understanding of these inner workings and ability to analyse them are currently limited, it is this area that offers the most tantalising potential.<br>
+Different 'heads' in the model learn different linguistic relationships, which can be visualised by the Bertviz module. Heads are grouped into layers, with each layer capturing more abstracted linguistic features.<br>
+
+Our understanding of these inner workings and ability to analyse them are currently limited, but the profound implications as our knowledge develops are not difficult to imagine.<br>
+<br>
+<br>
+**Linguistic relationship between article words and predicted headline word for one T5 layer**
 <br>
 
+<img src="bert_viz.jpg" style="width: 400px;"/>
+<br>
+<br>
 
 ## Opinion v news scorer
 
 This is a more traditional logistic model, which is trained to learn whether an article is tagged as opinion or news by the outlet given the words of the text. It returns a score out of 100, the higher the score indicating the higher the probability it is an opinion piece. <br>
+
+opinion wordcloud
 
 The SHAP library is then used to visualise the words in each article that are most indicative of it being a news piece, and an opinion piece. This lightweight model can easily be incorporated into software used by journlaists to publish their copy, instantly flagging up words that may be inappropriate in a news piece.<br>
 
@@ -98,6 +111,8 @@ Initial attempts to use transformers for this job generated poor results, but wi
 ## Retweet predictor
 
 This is also a traditional logistic model, which is trained by comparing the tweet text with how many retweets it received.<br>
+
+retweet wordclout
 
 The LIME library is then used to visualise the words that tend to increase retweets, which can be used by social media teams in deciding which stories to tweet, and how to word them.<br>
 
