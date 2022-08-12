@@ -1,12 +1,5 @@
-# Project Overview
-
-FingerprintNews is an api that utilises the latest developemnts in Natural Langauge Processing to create a suite of tools to be used in newsrooms to speed up headline writing and tweet generation, detect potential bias in copy and guide social media content to maximise interactions. <br>
-<br>
-
-
-<img src="images/shutterstock_2131280571.jpg" style="width: 700px;"/>
-
-<br>
+# Project Overview<img src="fing.jpg" align=center style="width: 100px;"/>
+FingerprintNews is an API that utilises the latest developments in Natural Langauge Processing to create a suite of tools to be used in newsrooms to speed up headline writing and tweet generation, detect potential bias in copy and guide social media content to maximise interactions. <br>
 <br>
 
 # Business Problem
@@ -14,14 +7,19 @@ FingerprintNews is an api that utilises the latest developemnts in Natural Langa
 Trust in print media is at an all-time low, according to a 2022 Gallup poll. <br>
 
 <img src="gall.jpg" style="width: 700px;"/>
-
-The latest generation of NLP 'tranformer' models, similar to those that power Google's search engine, are able to encode the inner workings of language with an increasing degree of complexity. In the same way the human body uses the genetic code to build different parts, thee encoded language secrets can be decoded and put to use on various tasks, opening the door to a whole new field of analysis and accountability within newsrooms.<br>
+<br>
 
 The industry has focussed heavily on so-called 'fake news', with fact-checking now a booming sector, but less attention has been paid to how the use of language has affected people's perception of the news media.<br>
 
-FingerprintNews harnesses the power of the latest generation of machine learning language models, similar to those used by Google's search function, to make a start in tackling these problems. <br>
+The latest generation of NLP 'tranformer' models, similar to those that power Google's search engine, are able to encode the inner workings of language with an increasing degree of complexity.<br>
 
-These models promise to reveal the secrets of language in the same way that the unravelling of gene did for the human body. Like the human body, these models can encode and decode these secrets in service of a wide range of tasks, and promise to be a fixture in newsrooms of the future.<br>
+In the same way the human body uses the genetic code to build different parts, the models can decode these language secrets and put them to use on various tasks, promising a new world of functionality and accountability within newsrooms.<br>
+<br>
+
+**Visualisation of linguistic relationships between words in an input sequence as learned by transformer model**
+<br>
+
+<img src="head.png" style="width: 700px;"/>
 
 FingerprintNews can currently be used by journalists to generate accurate and balanced headlines on the fly, by subeditors to identify when opinionated language is appearing in news stories, and by social media teams to quickly curate output for maximum reach.<br>
 
