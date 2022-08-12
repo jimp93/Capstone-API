@@ -1,5 +1,6 @@
 # Project Overview<img src="fing.jpg" align=center style="width: 100px;"/>
-FingerprintNews is an API that utilises the latest developments in Natural Langauge Processing to create a suite of tools to be used in newsrooms to speed up headline writing and tweet generation, detect potential bias in copy and guide social media content to maximise interactions. <br>
+FingerprintNews is an API that utilises the latest developments in Natural Langauge Processing to create a suite of tools to be used in newsrooms.<br>
+Its models can generate accurate headlines and tweets on the fly, detect potential bias in copy and guide social media content to maximise interactions. <br>
 <br>
 
 # Business Problem
@@ -16,16 +17,16 @@ The latest generation of NLP 'tranformer' models, similar to those that power Go
 In the same way the human body uses the genetic code to build different parts, the models can decode these language secrets and put them to use on various tasks, promising a new world of functionality and accountability within newsrooms.<br>
 <br>
 
-**Visualisation of linguistic relationships between words in an input sequence as learned by transformer model**
+**Visualisation of various linguistic relationships between words in an input sequence as learned by transformer model**
 <br>
 
 <img src="head.png" style="width: 700px;"/>
+<br>
 
-FingerprintNews can currently be used by journalists to generate accurate and balanced headlines on the fly, by subeditors to identify when opinionated language is appearing in news stories, and by social media teams to quickly curate output for maximum reach.<br>
+FingerprintNews can currently be used by journalists to instantly generate accurate and balanced headlines, by subeditors to identify when opinionated language is appearing in news stories, and by social media teams to quickly curate output for maximum reach.<br>
 
-But this is just the beginning, with the number of potential newsroom applications only limited by the imagination. 
+But this is just the beginning, with boundless potential for more applications to be added. 
 
-<img src="images/shutterstock_1730598724.jpg" style="width: 700px;"/>
 <br>
 <br>
 
@@ -33,7 +34,7 @@ But this is just the beginning, with the number of potential newsroom applicatio
 
 Given memory considerations, GitHub file size restrictions and the processing power of Google Colab, the code is split between GitHub and Colab. The Colab folder can be shared on request.<br>
 
-Data collection duties were shared across these platforms, with data shuttled between the two through the import_data and export_data folders in Colab. The rest of the code is on Colab.<br>
+Data collection duties were shared across both platforms, with data shuttled between the two through the * *import_data* * and * *export_data* * folders in Colab. The rest of the code is on Colab.<br>
 
 
 # The Data
@@ -50,27 +51,35 @@ This example instead used the Internet [Wayback Machine](https://archive.org/web
 
 These URLs were then used to scrape the actual article and retreive the text, headline, category, and date. Guardian articles were scraped using its free api.<br>
 
-Code for this step in each outlet is in pipe_x/scripts/x_scrape_py, with the final dataframes expoted to Colab and concatenated.<br>
+Code for this step in each outlet is in * *pipe_x/scripts/x_scrape_py* *, with the final dataframes expoted to Colab and concatenated.<br>
 
 The article and twitter datasets were then linked as below...<br>
 
 <img src="Viz/BreakingEven (2).jpg" style="width: 1000px;"/>
 
-The clean.eda scripts in each folder create another dataframe of features for each outlet, for instance article text with no stopwords, which is then exported to Colab.<br>
+The * *clean.eda* * scripts in each folder create another dataframe of features, for instance article text with no stopwords, which is then exported to Colab.<br>
 
 
 # Methods
 
 ## Headline and tweet summarizers
-The four models are in the summarizer folder in Colab. <br>
+The four models are in the * *summarizer* * folder in Colab. <br>
 
 The first model is a rudimentary extractive model, to get an idea of how they can identify important passages in the text. But the model is unable to learn any complexities of language, thus serverly limiting its potential applications.<br>
 
-The aim was therefore to create an inferential model which can actually learn contextual information and complex nuances, with the headline and tweet summarizers seen merely as the first of an array of tools to utilise this power to analyse journalistic language.<br>
+The aim was therefore to create an inferential model which can actually learn contextual information and linguistic structure, with the headline and tweet summarizers merely the first of an array of journalistic tools to utilise this ability.<br>
 
-The first inferential model is an 'lstm', the type used before the rise in popularity of transformer models. <br>
+The first inferential model is an 'lstm', the type used before the rise in popularity of transformer models. The lstm model uses cells that store the state of model so that relationships of words that appear close together and far apart can be encoded, allowing us to feed in long articles.<br>
+<br>
+**A long-term short-term memory cell**
 
-The lstm model uses cells that store the state of model so that relationships of words that appear close together and far apart can be encoded, allowing us to feed in long articles. The encoded article was trained against the articles headline. In production, the article text is fed into an encoder, which then generates a predicted headline, one word at a time.<br>
+<img src="lstm.png" align=center style="width: 500px;"/>
+<br>
+(Source : http://colah.github.io/posts/2015-08-Understanding-LSTMs)
+<br>
+<br>
+
+The encoded article was trained against the articles headline. In production, the article text is fed into an encoder, which then generates a predicted headline, one word at a time.<br>
 
 The models actually used in the API are T5 transformer models developed by Google. These models build on the lstm's capabilities, but are also able to encode words depending on their context, for instance learning the different meanings of words like 'bank' depending on other words in the sequence.<br>
 
