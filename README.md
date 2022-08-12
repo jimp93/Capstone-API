@@ -15,7 +15,7 @@ Trust in print media is at an all-time low, according to a 2022 Gallup poll. <br
 
 <img src="gall.jpg" style="width: 700px;"/>
 
-The latest generation of NLP 'tranformer' models, similar to those that power Google's search engine, are able to encode the secrets of language with an increasing degree of complexity. Like the human body using DNA code to produce different parts, these models can decode these secrets and put them to use on various tasks, opening the door to a whole new field of analysis and accountability within newsrooms.<br>
+The latest generation of NLP 'tranformer' models, similar to those that power Google's search engine, are able to encode the inner workings of language with an increasing degree of complexity. In the same way the human body uses the genetic code to build different parts, thee encoded language secrets can be decoded and put to use on various tasks, opening the door to a whole new field of analysis and accountability within newsrooms.<br>
 
 The industry has focussed heavily on so-called 'fake news', with fact-checking now a booming sector, but less attention has been paid to how the use of language has affected people's perception of the news media.<br>
 
@@ -35,7 +35,7 @@ But this is just the beginning, with the number of potential newsroom applicatio
 
 Given memory considerations, GitHub file size restrictions and the processing power of Google Colab, the code is split between GitHub and Colab. The Colab folder can be shared on request.<br>
 
-Data collection duties were shared across these platforms, with data exported and imported between the two, as detailed below. The rest of the code is on Colab.<br>
+Data collection duties were shared across these platforms, with data shuttled between the two through the import_data and export_data folders in Colab. The rest of the code is on Colab.<br>
 
 
 # The Data
@@ -44,7 +44,7 @@ The models were trained on 1.3 million news articles and 1.8 million tweets from
 
 Free-to-use python library [snscrape](https://github.com/JustAnotherArchivist/snscrape), was used to scrape the tweets. It returns the tweet text, URL links within the tweet and metrics such as likes and retweets.
 
-Code for this is in global_scripts/twitterScrape.py.<br>
+Code for this is in global_scripts/twitterScrape.py, with the final dataframes for each outlet exported to Colab and concatenated.<br>
 
 For those able to afford $1500, the articles can all be retrieved from the [News Api](https://newsapi.org) module.<br>
 
@@ -52,9 +52,9 @@ This example instead used the Internet [Wayback Machine](https://archive.org/web
 
 These URLs were then used to scrape the actual article and retreive the text, headline, category, and date. Guardian articles were scraped using its free api.<br>
 
-Code for this step is is in pipe_x/scripts/x_scrape_py.<br>
+Code for this step in each outlet is in pipe_x/scripts/x_scrape_py, with the final dataframes expoted to Colab and concatenated.<br>
 
-The two datasets were then linked as below...<br>
+The article and twitter datasets were then linked as below...<br>
 
 <img src="Viz/BreakingEven (2).jpg" style="width: 1000px;"/>
 
@@ -64,38 +64,68 @@ The clean.eda scripts in each folder create another dataframe of features for ea
 # Methods
 
 ## Headline and tweet summarizers
+The four models are in the summarizer folder in Colab. <br>
 
-The aim was to create an inferential model, as the headline and tweet summarizers are seen as merely a first step towards developing an array of tools to analyse journalistic language. To do this, we need models that learn the DNA of language, in order that we can then put them to use building various types of language tools, in the same way the human body uses the genetic code to build differnt parts. 
+The first model is a rudimentary extractive model, to get an idea of how they can identify important passages in the text. But the model is unable to learn any complexities of language, thus serverly limiting its potential applications.<br>
 
-The first attempt was 'lstm' model, which uses cells that store the state of model so that relationships of words that appear close together and far apart can be encoded, allowing us to feed in long articles. The encoded article was trained against the articles headline. In production, the article text is fed into an encoder, which then generates a predicted headline, one line at a time.
+The aim was therefore to create an inferential model which can actually learn contextual information and complex nuances, with the headline and tweet summarizers seen merely as the first of an array of tools to utilise this power to analyse journalistic language.<br>
 
+The first inferential model is an 'lstm', the type used before the rise in popularity of transformer models. <br>
 
+The lstm model uses cells that store the state of model so that relationships of words that appear close together and far apart can be encoded, allowing us to feed in long articles. The encoded article was trained against the articles headline. In production, the article text is fed into an encoder, which then generates a predicted headline, one word at a time.<br>
 
+The models actually used in the API are T5 transformer models developed by Google. These models build on the lstm's capabilities, but are also able to encode words depending on their context, for instance learning the different meanings of words like 'bank' depending on other words in the sequence.<br>
+
+Different 'heads' in the model learn different linguistic relationships, which can be visualised by the Bertviz module. While our understanding of these inner workings and ability to analyse them are currently limited, it is this area that offers the most tantalising potential.<br>
 <br>
+
+
+## Opinion v news scorer
+
+This is a more traditional logistic model, which is trained to learn whether an article is tagged as opinion or news by the outlet given the words of the text. It returns a score out of 100, the higher the score indicating the higher the probability it is an opinion piece. <br>
+
+The SHAP library is then used to visualise the words in each article that are most indicative of it being a news piece, and an opinion piece. This lightweight model can easily be incorporated into software used by journlaists to publish their copy, instantly flagging up words that may be inappropriate in a news piece.<br>
+
+Initial attempts to use transformers for this job generated poor results, but with more resources to tune the model, we should get not only more accurate results, but more ways of identifying features of manipulative language.<br>
+
+## Retweet predictor
+
+This is also a traditional logistic model, which is trained by comparing the tweet text with how many retweets it received.<br>
+
+The LIME library is then used to visualise the words that tend to increase retweets, which can be used by social media teams in deciding which stories to tweet, and how to word them.<br>
+
+Again, initial attempts to use transformers didn't generate usable results, but there is no reason why it shouldn't produce better results and deeper analysis once devloped.<br>
+
 
 <img src="Viz/music_wc.png" style="width: 700px;"/>
 <br>
 <br>
 
-### Headline Results
+# Headline Results
 <br>
 
-**The two best performing models, out of the 24 created, predicted the correct labels almost 80 percent of the time.** <br>
-<br>
-<br>
-
-**The best-performing model struggled most with stories  in the world-news, business and lifestyle categories as these tend to be more loosely defined and overlap with other categories.** <br>
-<br>
-<br>
-<img src="Viz/log_res.png" style="width: 700px;"/>
+##Headline and tweet summarizers** <br>
+Here are some examples of headlines generated by the model, compared with the actual headline<br>
 <br>
 
-**The model's internal decision making process can analyzed to reveal which words are the most important in predicting category labels, whether across the whole corpus, each category or individual articles. providing potentially valuable hidden insights.**
+The T5 model performs substantially better across various measurment metrics than the lstm model. The headline model performs better than the tweet model.
 <br>
 
+## Opinion v news scorer
 <br>
+The model is 89 percent succesful in identifying a news piece from an opinion article.
 <br>
 <img src="Viz/us-politics.png" style="width: 700px;"/>
+<br>
+Here is an example of a score generated from an article, and the SHAP visualisation explaining which words most influenced its prediction, with the red arrows indicating 'opinion' words.
+
+## Retweet predictor
+<br>
+The model is 39 percent succesful in predicting which of the five categories of retweet engagement the tweet will receive. The figure is quite low, but is still substantially better than randm guess, and correctly flagged up almost half of tweets that went viral. It is to be expected the results are lower given the somewhat subjective nature retweet values.
+<br>
+<img src="Viz/us-politics.png" style="width: 700px;"/>
+<br>
+Here is an example of a retweet score generated from a tweet, and the LIME visualisation explaining which words most influenced the prediction.
 
 ### Conclusion
 
