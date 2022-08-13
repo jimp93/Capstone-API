@@ -103,7 +103,7 @@ Our understanding of these inner workings and ability to analyse them are curren
 This is a more traditional logistic model, which is trained to learn whether an article is tagged as opinion or news by the outlet given the words of the text. It returns a score out of 100, the higher the score the higher the probability it should be an opinion piece. <br>
 
 **Wordcloud of opinion pieces**
-<img src="opinion.png" style="width: 400px;"/>
+<img src="opinion.png" style="width: 700px;"/>
 
 The SHAP library is then used to visualise the words in each article that are most indicative of it being a news piece, and an opinion piece. This lightweight model can easily be incorporated into software used by journlaists to publish their copy, instantly flagging up words that may be inappropriate in a news piece.<br>
 
@@ -113,8 +113,8 @@ Initial attempts to use transformers for this job generated poor results, but wi
 
 This is also a traditional logistic model, which is trained by comparing the tweet text with how many retweets it received.<br>
 
-**Wordcloud of viral tweets**
-<img src="all_4_wordcloud.png" style="width: 400px;"/>
+**Wordcloud of viral tweets**<br>
+<img src="all_4_wordcloud.png" style="width: 700px;"/>
 
 The LIME library is then used to visualise the words that tend to increase retweets, which can be used by social media teams in deciding which stories to tweet, and how to word them.<br><
 
@@ -158,21 +158,21 @@ Ministers have acknowledged concerns that these companies, known as English Limi
 Opinion Score = 39.39 percent<br>
 
 **Waterfall plot of keywords in model prediction**<br>
-<img src="opinion.png" style="width: 400px;"/><br><br>
+<img src="waterfall.jpg" style="width: 400px;"/><br><br>
 
 ## Retweet predictor
 <br>
 The model is 35 percent accurate in predicting how many retweets the tweet will receive, as defined in five categories. The figure is quite low, but is still substantially better than random guess, and it correctly flagged up almost half of tweets that went viral. It is to be expected the results are lower given the somewhat subjective nature retweet values.
 <br>
-<img src="tfid_log.png" style="width: 700px;"/>
+<img src="tfidf_log.png" style="width: 700px;"/>
 <br>
 Here is an example of a retweet score generated from a tweet linked to the above article, and the LIME visualisation explaining which words most influenced the prediction.<br>
 Virality-'viral'<br>
-<img src="twit_vr.jpg" style="width: 700px;"/><br><br>
+<img src="twit_vir.jpg" style="width: 700px;"/><br><br>
 
 The word vectors produced by more complex models can be plotted to show how different outlets use words.<br>
 
-**Closest word vector to 'liverpool' as learned by model on articles**
+**Closest word vector to 'liverpool' as learned by model on articles**<br>
 <img src="wv_liv.jpg" style="width: 700px;"/><br><br>
 
 
