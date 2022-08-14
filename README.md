@@ -103,7 +103,7 @@ Our understanding of these inner workings and ability to analyse them are curren
 This is a more traditional logistic model, which is trained to learn whether an article is tagged as opinion or news by the outlet given the words of the text. It returns a score out of 100, the higher the score the higher the probability it should be an opinion piece. <br>
 
 **Wordcloud of opinion pieces**
-<img src="Viz/opinion.png" style="width: 700px;"/>
+<img src="Viz/opinion.png" style="width: 500px;"/>
 
 The SHAP library is then used to visualise the words in each article that are most indicative of it being a news piece, and an opinion piece. This lightweight model can easily be incorporated into software used by journlaists to publish their copy, instantly flagging up words that may be inappropriate in a news piece.<br>
 
@@ -114,7 +114,7 @@ Initial attempts to use transformers for this job generated poor results, but wi
 This is also a traditional logistic model, which is trained by comparing the tweet text with how many retweets it received.<br>
 
 **Wordcloud of viral tweets**<br>
-<img src="Viz/all_4_wordcloud1.png" style="width: 700px;"/>
+<img src="Viz/all_4_wordcloud1.png" style="width: 500px;"/>
 
 The LIME library is then used to visualise the words that tend to increase retweets, which can be used by social media teams in deciding which stories to tweet, and how to word them.<br>
 
@@ -176,23 +176,37 @@ The word vectors produced by more complex models can be plotted to show how diff
 
 # Conclusion
 
-The API generally produces accurate headlines in readable English
+The API generally produces accurate headlines in readable English.<br>
 
-The model's ability to learn the 'DNA' of language opens the door to multiple ways of trying to detect unbalanced reporting 
+The model's ability to learn the 'DNA' of language opens the door to multiple ways of trying to detect unbalanced reporting.<br>
 
-The opinion-score generator is produced by a highly-accurate model, which can help identify 'red-flag' words 
+The opinion-score generator is produced by a highly-accurate model, which can help identify 'red-flag' words.<br>
 
-The retweet predictor model is less accurate, but is a nevertheless a useful guide and tool in helping editors and journalist tailor coverage and tweets
+The retweet predictor model is less accurate, but is a nevertheless a useful guide and tool in helping editors and journalist tailor coverage and tweets.<br>
+
+<img src="Viz/Feather-Of-Maat.jpg" style="width: 500px;"/><br><br>
 
 
+# Next steps
 
-### Next steps
+Turn the API into a web app and market to news consumers.<br>
 
-* Provide funds for more storage space and processing power to enable the models to be better 'tuned' and to enable more advanced processing techniques on the article to help it discern between overlapping categories
+Develop more tools using built on the encoder/decoder model. Models in the development include one which gives a score of headline congurency, one that checks paraphrased quotes against the actual quotes and ensure they are fairly summarized and a sentiment analysis scorer for Named Entities, to see whether coverage of people and places is negative or positive in different outlets.<br>
 
-* Channel more resources into analyzing the workings of the model to find hidden insights. The model can easily be linked to Twitter analytics, or to other metadata tags such as byline to glean distinctive features of successful writers or stories that play well on social media
+Work will continue on the current tools to make them more accurate and to give us deeper insights.<br>
+
+The headline model is pre-trained using a corpus of text. With more computing power, it would be good to diversify the training set to make sure in-built language prejudices are not continually propagated.<br>
+
+The model is fine tuned on a limited number of outlets but on many different styles of articles. It would perform better if we could train on more outlets, using a NewsAPI subscription, and make separate models for each main style of article.<br>
+
+We will develop transformer models to power the opinion/news tool, and will also try and incoroprate other techniques into the model, most obviously Parts of Speech and Named Entity analysis.<br>
+
+The word vector visualisations are skewed by being trained on retweet predictions, and are under-developed as tweet summaries are short and not representative of general language use. Ideally, we should generate from articles.<br>
+
+We will also develop a BERT transformer version of the retweet predictor, it seems reasonable to assume that being able contextualize words and learn syntactic characteristics would be a significant advantage.<br>
+
+The model should eventually incorportate image data too, as photographs attached to tweets seem a likely driver of retweets. The model should also be analyzable in more granular detail, giving us a 'viral vocabulary' for each subject matter.<br>
+
+In the longer term, we could try and collate the most salient details of a single news story as reported across various outlets, using a transformer model to extract the most relevant features, and flag up potentially absent contextual details for each outlet's report.<br>
+<img src="Viz/door_ligth.jpg" style="width: 500px;"/><br><br>
  
-
-<br>
-<br>
-
