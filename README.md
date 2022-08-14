@@ -186,7 +186,6 @@ The retweet predictor model is less accurate, but is a nevertheless a useful gui
 
 <img src="Viz/Feather-Of-Maat1.jpg" style="width: 200px;"/>
 
-
 # Next steps
 
 Turn the API into a web app and market to news consumers.<br>
