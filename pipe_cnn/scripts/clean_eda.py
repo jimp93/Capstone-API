@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[21]:
-
-
 import pickle
 import time
 import pandas as pd
@@ -12,37 +6,19 @@ import numpy as np
 import json
 import re
 
-
-# In[22]:
-
-
 with open('../data/cnn_articles_analysis', 'rb') as f:
     articles_analysis=pickle.load(f)
 
-
-# In[3]:
-
-
 articles_analysis.isnull().values.any()
 
-
-# In[25]:
-
+# to save memory, new features will be save in a separate dataframe, and merged when required
+# standardised categories will be in the features_df, along with cleaned text and no quote text
+# world will be changed in main df to localised
 
 article_features_df = pd.DataFrame()
-
-
-# In[26]:
-
-
 article_features_df['category']=articles_analysis['category']
 
-
-# # clean
-
-# In[23]:
-
-
+# clean
 def text_cleaner(x):
     try:
         x=x.partition("(CNN")
@@ -54,15 +30,7 @@ def text_cleaner(x):
         print('no clean')
     return x
 
-
-# In[36]:
-
-
 article_features_df['clean'] = articles_analysis['artText'].apply(text_cleaner)
-
-
-# In[38]:
-
 
 def make_clean_noquotes(x):
     switcheroo = x.replace('."', '".')
@@ -111,37 +79,9 @@ def make_clean_noquotes(x):
     end_string=end_string.strip(' ')
     return end_string
 
-
-# In[39]:
-
-
 article_features_df['clean_noquotes'] = article_features_df['clean'].apply(make_clean_noquotes)
-
-
-# # Standardise categories
-
-# In[43]:
-
-
-# to save memory, new features will be save in a separate dataframe, and merged when required
-# standardised categories will be in the features_df, along with cleaned text and no quote text
-# world will be changed in main df to localised
-
-
-# In[17]:
-
-
 cat_dic=articles_analysis['category'].value_counts().to_dict()
-
-
-# In[18]:
-
-
 cat_dic
-
-
-# In[41]:
-
 
 #use keys from cat dic and fit keys into standardised categories
 cat_dic_raw={'entertainment': 'arts/entertainment',
@@ -200,20 +140,12 @@ cat_dic_raw={'entertainment': 'arts/entertainment',
              'travel-play': 'travel',
              'news': 'misc'}
 
-
-# In[28]:
-
-
 cat_dic_rname={}
 for k in cat_dic_raw.keys():
     if type(cat_dic_raw[k]) == int:
         cat_dic_rname[k]='misc'
     else:
         cat_dic_rname[k]=cat_dic_raw[k]
-
-
-# In[29]:
-
 
 def cat_standardiser(x):
     try:
@@ -222,30 +154,14 @@ def cat_standardiser(x):
         x=x
     return x
 
-
-# In[30]:
-
-
 article_features_df['category_stand']=articles_analysis['category'].apply(cat_standardiser)
 
-
-# ## convert world into geographic area by checking for country names in headline/lead
-
-# In[42]:
-
+# convert world into geographic area by checking for country names in headline/lead
 
 temp_df=articles_analysis[articles_analysis['category']=='world']
 
-
-# In[43]:
-
-
 with open('../../global_data/country_zone_dict', 'rb') as f:
     country_zone=json.load(f)
-
-
-# In[57]:
-
 
 def global_to_local(glob_df, main_df):
     
@@ -290,52 +206,20 @@ def global_to_local(glob_df, main_df):
         else:
             main_df.loc[i, 'category']='world'
 
-        
-
-
-# In[45]:
-
-
 global_to_local(temp_df, article_features_df)
-
-
-# In[46]:
 
 
 #add outlet for use when merging into one df
 article_features_df['outlet']='cnn'
 
-
-# In[47]:
-
-
 with open('../data/cnn_articles_features', 'wb') as f:
     pickle.dump(article_features_df, f)
 
-
-# # check tweets df
-
-# In[48]:
-
-
 with open('../data/cnn_twitter_articles_analysis', 'rb') as f:
     twitter_articles_analysis=pickle.load(f)
-
-
-# In[221]:
-
-
+    
 twitter_articles_analysis.isnull().values.any()
-
-
-# In[49]:
-
-
 twitter_articles_analysis['artText'] = twitter_articles_analysis['artText'].apply(text_cleaner)
-
-
-# In[52]:
-
 
 def text_cleaner(x):
     if x!='blank':
@@ -343,65 +227,16 @@ def text_cleaner(x):
         x=x[0].strip()
     return x
 
-
-# In[53]:
-
-
 twitter_articles_analysis['tweetText']=twitter_articles_analysis['tweetText'].apply(text_cleaner)
-
-
-# In[ ]:
-
-
-
-
-
-# In[55]:
-
-
 twitter_articles_analysis['category']=twitter_articles_analysis['category'].apply(cat_standardiser)
-
-
-# In[56]:
-
-
 tw_temp = twitter_articles_analysis[twitter_articles_analysis['category']=='world']
-
-
-# In[58]:
-
-
 global_to_local(tw_temp, twitter_articles_analysis)
-
-
-# In[61]:
-
 
 with open('../data/cnn_twitter_articles_analysis', 'wb') as f:
     pickle.dump(twitter_articles_analysis, f)
 
-
-# In[ ]:
-
-
-
-
-
-# In[66]:
-
-
 af1=article_features_df.to_json()
-
-
-# In[67]:
-
 
 with open('../data/cnn_article_features_js', 'w') as f:
     json.dump(af1, f)
-
-
-# In[ ]:
-
-
-
 
