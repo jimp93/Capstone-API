@@ -13,14 +13,12 @@ with open('../data/bbc_twitter_articles_analysis', 'rb') as f:
     twitter_articles_analysis=pickle.load(f)
 
 articles_analysis.isnull().values.any()
-
 twitter_articles_analysis.isnull().values.any()
 
 
 # to save memory, new features will be save in a separate dataframe, and merged when required
 
 article_features_df = pd.DataFrame()
-
 article_features_df['category']=articles_analysis['category']
 
 # clean article text and remove quotes
