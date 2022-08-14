@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import pickle
 import time
 import pandas as pd
@@ -12,36 +6,15 @@ import numpy as np
 import json
 import re
 
-
-# In[2]:
-
-
 with open('../data/reuters_articles_analysis', 'rb') as f:
     articles_analysis=pickle.load(f)
-
-
-# In[3]:
-
 
 articles_analysis.isnull().values.any()
 
 
-# # Make clean columns
-
-# In[3]:
-
-
+# Make new df for features, clean columns
 article_features_df = pd.DataFrame()
-
-
-# In[4]:
-
-
 article_features_df['category']=articles_analysis['category']
-
-
-# In[5]:
-
 
 # cleaned to get lead
 def text_cleaner(x):
@@ -52,15 +25,7 @@ def text_cleaner(x):
         x=x
     return x
 
-
-# In[6]:
-
-
 article_features_df['clean'] = articles_analysis.artText.apply(text_cleaner)
-
-
-# In[7]:
-
 
 def tidy_noquotes(x):
     quote_list=[]
@@ -90,49 +55,15 @@ def tidy_noquotes(x):
     end_string =('. ').join(neat_noq_list) 
     return end_string
 
-
-# In[8]:
-
-
 article_features_df['clean_noquotes'] = article_features_df['clean'].apply(tidy_noquotes)
-
-
-# In[9]:
-
-
 article_features_df['clean'] = article_features_df['clean'].apply(lambda x: x.replace('.', '. '))
-
-
-# In[10]:
-
-
 article_features_df['clean'] = article_features_df['clean'].apply(lambda x: x.replace('U. S. ', 'U.S.'))
-
-
-# In[11]:
-
-
 article_features_df['clean'] = article_features_df['clean'].apply(lambda x: x.replace('U. K.', 'U. K.'))
 
 
-# # Standardise categories
-
-# ## convert world into geographic area by checking for country names in headline/lead
-
-# In[6]:
-
-
+# Standardise categories
+# convert world into geographic area by checking for country names in headline/lead
 cat_dic=articles_analysis['category'].value_counts().to_dict()
-
-
-# In[7]:
-
-
-cat_dic
-
-
-# In[12]:
-
 
 #use keys from cat dic and fit keys into standardised categories
 cat_dic_raw={'Industrials': 'economy',
@@ -302,10 +233,6 @@ cat_dic_raw={'Industrials': 'economy',
              'reboot-live': 'economy',
              'test': 'politics'}
 
-
-# In[13]:
-
-
 def cat_standardiser(x):
     try:
         x=cat_dic_raw[x]
@@ -313,29 +240,12 @@ def cat_standardiser(x):
         x=x
     return x
 
-
-# In[14]:
-
-
 article_features_df['category_stand']=articles_analysis['category'].apply(cat_standardiser)
-
-
-# In[15]:
-
-
 temp_df=articles_analysis[article_features_df['category_stand']=='world']
-
-
-# In[16]:
-
 
 with open('../../global_data/country_zone_dict', 'rb') as f:
     country_zone=json.load(f)
-
-
-# In[27]:
-
-
+    
 def global_to_local(glob_df, main_df):
     
     cz_keys=list(country_zone.keys())
@@ -379,90 +289,29 @@ def global_to_local(glob_df, main_df):
         else:
             main_df.loc[i, 'category']='world'
 
-        
-
-
-# In[20]:
-
 
 global_to_local(temp_df, article_features_df)
 
-
-# In[21]:
-
-
 #add outlet for use when merging into one df
 article_features_df['outlet']='reuters'
-
-
-# In[22]:
-
 
 with open('../data/reuters_articles_features', 'wb') as f:
     pickle.dump(article_features_df, f)
 
 
-# # check tweets df
-
-# In[23]:
-
-
+# check tweets df
 with open('../data/reuters_twitter_articles_analysis', 'rb') as f:
     twitter_articles_analysis=pickle.load(f)
 
-
-# In[24]:
-
-
 twitter_articles_analysis['clean']=twitter_articles_analysis['artText'].apply(text_cleaner)
-
-
-# In[25]:
-
-
 twitter_articles_analysis['category']=twitter_articles_analysis['category'].apply(cat_standardiser)
-
-
-# In[26]:
-
-
 tw_temp = twitter_articles_analysis[twitter_articles_analysis['category']=='world']
-
-
-# In[28]:
-
-
 global_to_local(tw_temp, twitter_articles_analysis)
-
-
-# In[29]:
-
 
 with open('../data/reuters_twitter_articles_analysis', 'wb') as f:
     pickle.dump(twitter_articles_analysis, f)
 
-
-# In[ ]:
-
-
-
-
-
-# In[34]:
-
-
 af1=articles_analysis.to_json()
-
-
-# In[35]:
-
 
 with open('../data/reuters_articles_analysis_js', 'w') as f:
     json.dump(af1, f)
-
-
-# In[ ]:
-
-
-
-
