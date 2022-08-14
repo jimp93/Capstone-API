@@ -160,7 +160,7 @@ article_features_df['category_stand']=articles_analysis['category'].apply(cat_st
 
 temp_df=articles_analysis[articles_analysis['category']=='world']
 
-with open('../../global_data/country_zone_dict', 'rb') as f:
+with open('country_zone_dict', 'rb') as f:
     country_zone=json.load(f)
 
 def global_to_local(glob_df, main_df):
