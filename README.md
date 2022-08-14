@@ -184,7 +184,7 @@ The opinion-score generator is produced by a highly-accurate model, which can he
 
 The retweet predictor model is less accurate, but is a nevertheless a useful guide and tool in helping editors and journalist tailor coverage and tweets.<br>
 
-<img src="Viz/Feather-Of-Maat.jpg" style="width: 200px;"/><br><br>
+<img src="Viz/Feather-Of-Maat1.jpg" style="width: 200px;"/><br><br>
 
 
 # Next steps
