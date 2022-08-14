@@ -184,7 +184,7 @@ The opinion-score generator is produced by a highly-accurate model, which can he
 
 The retweet predictor model is less accurate, but is a nevertheless a useful guide and tool in helping editors and journalist tailor coverage and tweets.<br>
 
-<img src="Viz/Feather-Of-Maat.jpg" style="width: 500px;"/><br><br>
+<img src="Viz/Feather-Of-Maat.jpg" style="width: 200px;"/><br><br>
 
 
 # Next steps
@@ -208,5 +208,5 @@ We will also develop a BERT transformer version of the retweet predictor, it see
 The model should eventually incorportate image data too, as photographs attached to tweets seem a likely driver of retweets. The model should also be analyzable in more granular detail, giving us a 'viral vocabulary' for each subject matter.<br>
 
 In the longer term, we could try and collate the most salient details of a single news story as reported across various outlets, using a transformer model to extract the most relevant features, and flag up potentially absent contextual details for each outlet's report.<br>
-<img src="Viz/door_ligth.jpg" style="width: 500px;"/><br><br>
+<img src="Viz/door_light.jpg" style="width: 500px;"/><br><br>
  
