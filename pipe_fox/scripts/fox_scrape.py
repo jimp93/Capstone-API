@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import bs4 as bs
 import pickle
 from bs4 import BeautifulSoup
@@ -12,19 +6,13 @@ import time
 from collections import Counter
 import pandas as pd
 
-
-# In[3]:
-
-
 with open('date_list', 'rb') as fu:
     date_list = pickle.load(fu)   
 
 
-# In[4]:
-
-
 wb_fox_urls=[]
 
+# get wayback article urls
 for ymd in date_list:
     try:
         url = f'http://archive.org/wayback/available?url=foxnews.com&timestamp={ymd}'
@@ -38,13 +26,11 @@ wb_fox_urls_set=set(wb_fox_urls)
 wb_fox_urls=list(wb_fox_urls_set)
 
 
-# In[55]:
-
-
 fox_urls=[]
 part_list = ['http://smallbusiness.foxbusiness', 'https://smallbusiness.foxbusiness', 'http://www.foxnews.com', 'https://www.foxnews.com']
 date_holder =[]
 
+# get actual article urls
 for wb_url in wb_fox_urls:
     success = 'yes'
     
@@ -83,13 +69,11 @@ for wb_url in wb_fox_urls:
 fox_urls_set = set(fox_urls)
 fox_urls = list(fox_urls_set)
 
-
-# In[7]:
-
-
 fox_articles=[]
 
 time.sleep(0.05)
+
+# parse, turn into df and save
 for ur in fox_urls:
     article_data=[]
     try:
@@ -151,41 +135,13 @@ for ur in fox_urls:
     article_data =[ur, section, headline, dt, body_string]
     fox_articles.append(article_data)
 
-
-# In[ ]:
-
-
 fox_articles_df = pd.DataFrame(fox_articles, columns=['URL', 'category', 'headline', 'date', 'text'])
-
-
-# In[14]:
-
 
 with open('articles/fox_articles_df', 'rb') as f:
     pickle.dump(fox_articles_df, f)
 
-
-# In[ ]:
-
-
-
-
-
-# In[3]:
-
-
 with open('../Reserves/fox_url_list', 'rb') as f:
     fox_url_list=pickle.load(f)
-
-
-# In[4]:
-
-
-fox_url_list
-
-
-# In[ ]:
-
 
 fox_ur_tweet=[]
 
