@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[2]:
-
-
 import bs4 as bs
 import pickle
 from bs4 import BeautifulSoup
@@ -18,19 +12,13 @@ import pandas as pd
 from datetime import datetime, timedelta
 import pickle
 
-
-# In[27]:
-
-
 with open('../../global_data/date_list', 'wb') as f:
     date_list=pickle.load(f)
 
-
-# In[ ]:
-
-
 wb_url_list=[]
 import time
+
+# get wayback article url links
 for ymd in date_list:
     try:
         url = f'http://archive.org/wayback/available?url=cnn.com&timestamp={ymd}'
@@ -44,16 +32,9 @@ for ymd in date_list:
 wb_url_set=set(wb_url_list)
 wb_cnn_url_list=list(wb_url_set)
 
-
-# In[28]:
-
-
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
-
-# In[30]:
-
-
+# get actual url links
 cnn_urls=[]
 for wb_url in wb_cnn_url_list:
     success = 'yes'
@@ -88,10 +69,7 @@ for wb_url in wb_cnn_url_list:
 cnn_urls_set = set(cnn_urls)
 cnn_urls = list(cnn_url_set)
 
-
-# In[48]:
-
-
+# parse, turn into df and save
 cnn_articles=[]
 c=0
 for ur in cnn_urls:
@@ -146,10 +124,6 @@ for ur in cnn_urls:
     article_data =[ur, section, headline, date, body_string]
     cnn_articles.append(article_data)
 cnn_articles
-
-
-# In[49]:
-
 
 cnn_articles_df = pd.DataFrame(cnn_articles, columns=['URL', 'category', 'headline', 'date', 'text'])
 
