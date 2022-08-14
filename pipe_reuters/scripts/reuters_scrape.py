@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[11]:
-
-
 import bs4 as bs
 import pickle
 from bs4 import BeautifulSoup
@@ -11,19 +5,12 @@ import requests
 import time
 import pandas as pd
 
-
-# In[2]:
-
-
 with open('date_list', 'rb') as fp:
     date_list = pickle.load(fp)
 
-
-# In[13]:
-
-
 wb_reuters_urls =[]
 
+# get wayback article url links
 for ymd in date_list:
     try:
         url = f'http://archive.org/wayback/available?url=reuters.com&timestamp={ymd}'
@@ -38,18 +25,9 @@ for ymd in date_list:
 wb_reuters_urls_set=set(wb_reuters_urls)
 wb_reuters_urls = list(wb_reuters_urls_set)
 
-
-# In[ ]:
-
-
-wb_reuters_urls
-
-
-# In[17]:
-
-
 reuters_urls = []
 c=0
+# get actual article url links
 for wb_url in wb_reuters_urls:
     c+=1
     print(c)
@@ -87,11 +65,6 @@ for wb_url in wb_reuters_urls:
 
 reuters_urls_set = set(reuters_urls)
 reuters_urls = list(reuters_urls_set)
-
-
-# In[ ]:
-
-
 reuters_articles=[]
 
 for ur in reut_url_list:
@@ -150,84 +123,24 @@ for ur in reut_url_list:
     article_data =[ur, section, headline, dt, body_string]
     reuters_articles.append(article_data)
 
-
-# In[ ]:
-
-
 reuters_articles_df = pd.DataFrame(reuters_articles, columns=['URL', 'category', 'headline', 'date', 'text'])
-
-
-# In[11]:
-
 
 with open('../articles/reuters_articles_df', 'wb') as f:
     pickle.dump(reuters_articles_df, f)
-
-
-# In[3]:
-
 
 with open('../articles/reuters_articles_df', 'rb') as f:
     reuters_articles_df=pickle.load(f)
 
-
-# In[5]:
-
-
 reuters_articles_df.drop_duplicates(subset='headline', inplace=True)
-
-
-# In[7]:
-
-
 reuters_articles_df.reset_index(inplace=True, drop=True)
-
-
-# In[9]:
-
 
 with open('../articles/reuters_articles_df', 'wb') as f:
     pickle.dump(reuters_articles_df, f)
 
-
-# In[ ]:
-
-
-
-
-
-# In[12]:
-
-
 reuters_tweets=pd.read_csv('../twitter_dfs/reuters_tweets_df.csv')
-
-
-# In[14]:
-
-
 reuters_tweets.drop_duplicates(subset='headline', inplace=True)
-
-
-# In[16]:
-
-
 reuters_tweets.reset_index(inplace=True, drop=True)
-
-
-# In[17]:
-
-
-reuters_tweets
-
-
-# In[18]:
-
-
 reuters_tweets.to_csv('../twitter_dfs/reuters_tweets_df.csv', index=False)
-
-
-# In[21]:
-
 
 for index, row in reuters_tweets.iterrows():
     print(index)
@@ -235,22 +148,4 @@ for index, row in reuters_tweets.iterrows():
     tuple_2= tuple_1[0].partition('http')[0].strip()
     reuters_tweets.loc[index, 'headline'] = tuple_2
     
-
-
-# In[22]:
-
-
 reuters_tweets.to_csv('../twitter_dfs/reuters_tweets_df.csv', index=False)
-
-
-# In[24]:
-
-
-reuters_tweets.loc[2, 'headline']
-
-
-# In[ ]:
-
-
-
-
