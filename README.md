@@ -206,6 +206,7 @@ We will also develop a BERT transformer version of the retweet predictor, it see
 
 The model should eventually incorportate image data too, as photographs attached to tweets seem a likely driver of retweets. The model should also be analyzable in more granular detail, giving us a 'viral vocabulary' for each subject matter.<br>
 
-In the longer term, we could try and collate the most salient details of a single news story as reported across various outlets, using a transformer model to extract the most relevant features, and flag up potentially absent contextual details for each outlet's report.<br>
-<img src="Viz/door_light.jpg" style="width: 500px;"/><br><br>
+In the longer term, we could try and collate the most salient details of a single news story as reported across various outlets, using a transformer model to extract the most relevant features, and flag up potentially absent contextual details for each outlet's report.<br><br>
+<img src="Viz/door_light.jpg" align=center style="width: 500px;"/><br><br>
+ 
  
