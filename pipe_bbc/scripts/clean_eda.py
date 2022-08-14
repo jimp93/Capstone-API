@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import pickle
 import time
 import pandas as pd
@@ -12,57 +6,24 @@ import numpy as np
 import json
 import re
 
-
-# In[2]:
-
-
 with open('../data/bbc_articles_analysis', 'rb') as f:
     articles_analysis=pickle.load(f)
-
-
-# In[3]:
-
 
 with open('../data/bbc_twitter_articles_analysis', 'rb') as f:
     twitter_articles_analysis=pickle.load(f)
 
-
-# In[5]:
-
-
 articles_analysis.isnull().values.any()
-
-
-# In[6]:
-
 
 twitter_articles_analysis.isnull().values.any()
 
 
-# # Standardise categories
-
-# In[ ]:
-
-
 # to save memory, new features will be save in a separate dataframe, and merged when required
-
-
-# In[4]:
-
 
 article_features_df = pd.DataFrame()
 
-
-# In[5]:
-
-
 article_features_df['category']=articles_analysis['category']
 
-
-# # clean article text and remove quotes
-
-# In[22]:
-
+# clean article text and remove quotes
 
 def tidy_text(x):
     try:
@@ -77,10 +38,6 @@ def tidy_text(x):
     except:
         end_string=x
     return end_string
-
-
-# In[7]:
-
 
 def tidy_noquotes(x):
     quote_list=[]
@@ -109,36 +66,12 @@ def tidy_noquotes(x):
     end_string =('. ').join(neat_noq_list) 
     return end_string
 
-
-# In[8]:
-
-
 article_features_df['clean_text'] = articles_analysis['artText'].apply(tidy_text)
-
-
-# In[9]:
-
-
 article_features_df['clean_noquotes'] = article_features_df['clean_text'].apply(tidy_noquotes)
 
 
-# # Standardise categories
-
-# In[4]:
-
-
+# Standardise categories
 cat_dic=articles_analysis['category'].value_counts().to_dict()
-
-
-# In[5]:
-
-
-cat_dic
-
-
-# In[11]:
-
-
 cat_dic_rname= {'Business': 'business',
                 'sport': 'sport',
                 'US & Canada': 'us',
@@ -266,41 +199,13 @@ cat_dic_rname= {'Business': 'business',
                 'Technology of Business': 'economy',
                 'CEO Secrets': 'economy'}
 
-
-# In[12]:
-
-
 article_features_df['category_stand']=articles_analysis['category'].apply(lambda x: cat_dic_rname[x])
-
-
-# In[13]:
-
-
 article_features_df['outlet']='bbc'
-
-
-# In[14]:
-
 
 with open('../data/bbc_articles_features', 'wb') as f:
     pickle.dump(article_features_df, f)
 
-
-# In[ ]:
-
-
-#wales-uk -- in welsh
-#vietnamese sport need deleting
-
-
-# In[23]:
-
-
 twitter_articles_analysis['clean']=twitter_articles_analysis['artText'].apply(tidy_text)
-
-
-# In[25]:
-
 
 def twitter_cat_stand(x):
     try:
@@ -309,46 +214,16 @@ def twitter_cat_stand(x):
         x=x
     return x
 
-
-# In[27]:
-
-
 twitter_articles_analysis['category']=twitter_articles_analysis['category'].apply(twitter_cat_stand)
-
-
-# In[28]:
-
-
 twitter_articles_analysis
-
-
-# In[29]:
-
 
 with open('../data/bbc_twitter_articles_analysis', 'wb') as f:
     pickle.dump(twitter_articles_analysis, f)
 
-
-# In[ ]:
-
-
-
-
-
-# In[34]:
-
-
 af1=article_features_df.to_json()
-
-
-# In[35]:
-
 
 with open('../data/bbc_article_features_js', 'w') as f:
     json.dump(af1, f)
-
-
-# In[ ]:
 
 
 
