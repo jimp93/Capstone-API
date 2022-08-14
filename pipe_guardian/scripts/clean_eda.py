@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import pickle
 import time
 import pandas as pd
@@ -12,49 +6,19 @@ import numpy as np
 import json
 import re
 
-
-# In[2]:
-
-
 with open('../data/guardian_articles_analysis', 'rb') as f:
     articles_analysis=pickle.load(f)
-
-
-# In[2]:
-
 
 with open('../data/guardian_article_features', 'rb') as f:
     article_features=pickle.load(f)
 
-
-# In[3]:
-
-
 articles_analysis.isnull().values.any()
 
-
-# # Make clean columns
-
-# In[ ]:
-
-
+# Make clean columns
 # to save memory, new features will be save in a separate dataframe, and merged when required
 
-
-# In[5]:
-
-
 article_features_df = pd.DataFrame()
-
-
-# In[6]:
-
-
 article_features_df['category']=articles_analysis['category']
-
-
-# In[8]:
-
 
 def tidy_noquotes(x):
     quote_list=[]
@@ -84,37 +48,13 @@ def tidy_noquotes(x):
     end_string =('. ').join(neat_noq_list) 
     return end_string
 
-
-# In[9]:
-
-
 article_features_df['clean_noquotes'] = articles_analysis['artText'].apply(tidy_noquotes)
-
-
-# In[7]:
-
-
 article_features_df['clean'] = articles_analysis['artText']
-
-
-# In[8]:
-
-
 article_features_df
 
-
-# # Standardise categories
-
-# ## convert world into geographic area by checking for country names in headline/lead
-
-# In[9]:
-
-
+# Standardise categories
+# convert world into geographic area by checking for country names in headline/lead
 cat_dic=articles_analysis['category'].value_counts().to_dict()
-
-
-# In[10]:
-
 
 #use keys from cat dic and fit keys into standardised categories
 cat_dic_raw={'commentisfree':'opinion',
@@ -399,10 +339,6 @@ cat_dic_raw={'commentisfree':'opinion',
                'ageing-population-advertisement-features': 1,
                'how-to-solve-a-murder-a-detectives-dilemma': 1}
 
-
-# In[11]:
-
-
 cat_dic_rname={}
 for k in cat_dic_raw.keys():
     if type(cat_dic_raw[k]) == int:
@@ -410,40 +346,11 @@ for k in cat_dic_raw.keys():
     else:
         cat_dic_rname[k]=cat_dic_raw[k]
 
-
-# In[12]:
-
-
 article_features_df['category_stand']=articles_analysis['category'].apply(lambda x: cat_dic_rname[x])
-
-
-# In[ ]:
-
-
-
-
-
-# In[13]:
-
-
 temp_df=articles_analysis[articles_analysis['category']=='world']
-
-
-# In[14]:
-
-
-article_features_df
-
-
-# In[15]:
-
 
 with open('../../global_data/country_zone_dict', 'rb') as f:
     country_zone=json.load(f)
-
-
-# In[16]:
-
 
 def global_to_local(glob_df, main_df):
     
@@ -488,160 +395,41 @@ def global_to_local(glob_df, main_df):
         else:
             main_df.loc[i, 'category_stand']='world'
 
-        
-
-
-# In[17]:
-
-
 global_to_local(temp_df, article_features_df)
-
-
-# In[20]:
-
 
 #add outlet for use when merging into one df
 article_features_df['outlet']='guardian'
 
-
-# In[21]:
-
-
-article_features_df
-
-
-# In[18]:
-
-
 with open('../data/guardian_article_features', 'wb') as f:
     pickle.dump(article_features_df, f)
 
-
-# # to use in main
-
-# In[22]:
-
-
+# to use in main
 guardian_articles_clean=articles_analysis.copy()
-
-
-# In[23]:
-
-
 guardian_articles_clean.drop('category', axis=1, inplace=True)
-
-
-# In[24]:
-
-
 guardian_articles_clean['clean']=article_features_df['clean'].apply(lambda x: x)
-
-
-# In[25]:
-
-
 guardian_articles_clean['category']=article_features_df['category_stand'].apply(lambda x: x)
-
-
-# In[27]:
-
-
 guardian_articles_clean.rename(columns={'clean':'text'}, inplace=True)
-
-
-# In[29]:
-
-
 guardian_articles_clean.drop('artText', axis=1, inplace=True)
-
-
-# In[31]:
-
-
 guardian_articles_clean=guardian_articles_clean.to_json()
-
-
-# In[32]:
-
 
 with open('../data/guardian_articles_clean_js', 'w') as f:
     json.dump(guardian_articles_clean, f)
 
-
-# # check tweets df
-
-# In[8]:
-
-
 with open('../data/guardian_twitter_articles_analysis', 'rb') as f:
     twitter_articles_analysis=pickle.load(f)
 
-
-# In[4]:
-
-
 twitter_articles_analysis.isnull().values.any()
-
-
-# In[7]:
-
-
 twitter_articles_analysis['category']=twitter_articles_analysis['category'].apply(lambda x: cat_dic_rname[x])
-
-
-# In[10]:
-
-
 tw_temp = twitter_articles_analysis[twitter_articles_analysis['category']=='world']
-
-
-# In[15]:
-
-
 global_to_local(tw_temp, twitter_articles_analysis)
-
-
-# In[17]:
-
 
 with open('../data/guardian_twitter_articles_analysis', 'wb') as f:
     pickle.dump(twitter_articles_analysis, f)
 
-
-# In[ ]:
-
-
-
-
-
-# In[2]:
-
-
 with open('../data/guardian_articles_clean', 'rb') as f:
     guardian_articles_clean=pickle.load(f)
 
-
-# In[4]:
-
-
-article_features
-
-
-# In[5]:
-
-
 af1=article_features.to_json()
-
-
-# In[6]:
-
 
 with open('../data/guardian_article_features_js', 'w') as f:
     json.dump(af1, f)
-
-
-# In[ ]:
-
-
-
-
