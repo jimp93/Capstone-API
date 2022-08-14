@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import bs4 as bs
 import pickle
 from bs4 import BeautifulSoup
@@ -12,17 +6,10 @@ import time
 import pandas as pd
 from datetime import datetime, timedelta
 
-
-# In[ ]:
-
-
 with open('../../global_data/date_list', 'wb') as f:
     date_list=pickle.load(f)
 
-
-# In[ ]:
-
-
+# get wayback article url links from wayback machine
 wb_bbc_urls = []
 for ymd in date_list:
     try:
@@ -37,10 +24,7 @@ for ymd in date_list:
 wb_bbc_urls_set = set(wb_bbc_urls)
 wb_bbc_urls = list(wb_bbc_urls_set)
 
-
-# In[ ]:
-
-
+# get actual article links
 bbc_urls = []
 for wb_url in list(wb_bbc_urls):
     time.sleep(0.2)
@@ -61,12 +45,9 @@ for wb_url in list(wb_bbc_urls):
 bbc_urls_set = set(bbc_urls)
 bbc_urls = list(bbc_urls_set)
 
-
-# In[ ]:
-
-
 bbc_articles=[]
 
+# parse articles, turn into dataframe and save
 for ur in bbc_urls:
     time.sleep(0.2)
 
@@ -141,22 +122,7 @@ for ur in bbc_urls:
     article_data =[ur, section, headline, dt, body_string]
     bbc_articles.append(article_data)
 
-
-# In[ ]:
-
-
 bbc_articles_df = pd.DataFrame(bbc_articles, columns=['URL', 'category', 'headline', 'date', 'text'])
-
-
-# In[ ]:
-
 
 with open('../data/bbc_articles_df', 'wb') as f:
     pickle.dump(bbc_articles_df, f)
-
-
-# In[ ]:
-
-
-
-
