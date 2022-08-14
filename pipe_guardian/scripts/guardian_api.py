@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[12]:
-
-
 import json
 import requests
 import os
@@ -13,20 +7,12 @@ from datetime import date, timedelta
 import time
 from pathlib import Path
 
-
-# In[8]:
-
-
 path = Path(os.getcwd())
 
 levels_up = 4
 root=path.parents[levels_up+0]
 kpath=f'{root}\gk.txt'
 MY_API_KEY = open(kpath).read()
-
-
-# In[48]:
-
 
 API_ENDPOINT = 'http://content.guardianapis.com/search'
 my_params = {
@@ -68,10 +54,6 @@ for daycount in dayrange:
         with open(fname, 'w') as f:
             f.write(json.dumps(all_results, indent=2))
 
-
-# In[11]:
-
-
 directory = '../data/tempdata/articles'
  
 # iterate over files in
@@ -93,11 +75,6 @@ for filename in os.listdir(directory):
                         new_dic[f] = f'no {f}'
             article_responses.append(new_dic)
                     
-
-
-# In[13]:
-
-
 with open("../data/guardian_articles.json", 'w') as fl:
     json.dump(article_responses, fl, indent=2) 
 
