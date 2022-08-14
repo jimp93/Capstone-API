@@ -1,12 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[2]:
-
-
-## sort out world order
-# clean method
-
 import pickle
 import time
 import pandas as pd
@@ -15,42 +6,18 @@ import numpy as np
 import json
 import re
 
-
-# In[3]:
-
-
 with open('../data/fox_articles_analysis', 'rb') as f:
     articles_analysis=pickle.load(f)
-
-
-# In[3]:
-
 
 articles_analysis.isnull().values.any()
 
 
-# # Make clean columns
-
-# In[10]:
-
+# to save memory, new features will be save in a separate dataframe, and merged when required
+# standardised categories will be in the features_df, along with cleaned text and no quote text
+# world will be changed in main df to localised
 
 article_features_df = pd.DataFrame()
-
-
-# In[11]:
-
-
 article_features_df['category']=articles_analysis['category']
-
-
-# In[15]:
-
-
-article_features_df
-
-
-# In[87]:
-
 
 def general_cleaner(x):
     try:
@@ -95,52 +62,13 @@ def noquote_cleaner(x):
         x=('. ').join(stripped)
     return x
 
-
-# In[13]:
-
-
 article_features_df['clean']=articles_analysis['artText'].apply(general_cleaner)
-
-
-# In[14]:
-
-
 article_features_df['clean_noquote']=articles_analysis['artText'].apply(noquote_cleaner)
 
-
-# In[15]:
-
-
-article_features_df
-
-
-# # Standardise categories
-
-# In[43]:
-
-
-# to save memory, new features will be save in a separate dataframe, and merged when required
-# standardised categories will be in the features_df, along with cleaned text and no quote text
-# world will be changed in main df to localised
-
-
-# ## convert world into geographic area by checking for country names in headline/lead
-
-# In[16]:
-
+# Standardise categories
+# convert world into geographic area by checking for country names in headline/lead
 
 cat_dic=articles_analysis['category'].value_counts().to_dict()
-
-
-# In[12]:
-
-
-cat_dic
-
-
-# In[17]:
-
-
 raw_cat_dic={'auto': 'auto/transtport',
              'blank': 'delete',
              'category': 'loop',
@@ -176,10 +104,6 @@ raw_cat_dic={'auto': 'auto/transtport',
              'personal-finance':'economy',
              'your_world': 'world'}
 
-
-# In[19]:
-
-
 def cat_standardiser(x):
     try:
         x=raw_cat_dic[x]
@@ -187,34 +111,11 @@ def cat_standardiser(x):
         x=x
     return x
 
-
-# In[20]:
-
-
 article_features_df['category_stand']=articles_analysis['category'].apply(cat_standardiser)
-
-
-# In[24]:
-
-
-article_features_df
-
-
-# In[21]:
-
-
 temp_df=articles_analysis[article_features_df['category_stand']=='world']
 
-
-# In[70]:
-
-
-with open('../../global_data/country_zone_dict', 'r') as f:
+with open('country_zone_dict', 'r') as f:
     country_zone=json.load(f)
-
-
-# In[85]:
-
 
 def global_to_local(glob_df, main_df):
     
@@ -260,111 +161,33 @@ def global_to_local(glob_df, main_df):
         else:
             main_df.loc[i, 'category']='world'
 
-        
-
-
-# In[75]:
-
-
 global_to_local(temp_df, article_features_df)
-
-
-# In[103]:
-
 
 #add outlet for use when merging into one df
 article_features_df['outlet']='fox'
 
-
-# In[105]:
-
-
 with open('../data/fox_articles_features', 'wb') as f:
     pickle.dump(article_features_df, f)
-
-
-# # check tweets df
-
-# In[79]:
-
 
 with open('../data/fox_twitter_articles_analysis', 'rb') as f:
     twitter_articles_analysis=pickle.load(f)
 
-
-# In[80]:
-
-
-twitter_articles_analysis.isnull().values.any()
-
-
-# In[90]:
-
-
 twitter_articles_analysis['clean']=twitter_articles_analysis['artText'].apply(general_cleaner)
-
-
-# In[95]:
-
 
 def text_cleaner(x):
     x = x.partition('http')
     x=x[0].strip(' \n')
     return x
 
-
-# In[96]:
-
-
 twitter_articles_analysis['tweetText']=twitter_articles_analysis['tweetText'].apply(text_cleaner)
-
-
-# In[98]:
-
-
 twitter_articles_analysis['category']=twitter_articles_analysis['category'].apply(cat_standardiser)
-
-
-# In[99]:
-
-
 tw_temp = twitter_articles_analysis[twitter_articles_analysis['category']=='world']
-
-
-# In[100]:
-
-
 global_to_local(tw_temp, twitter_articles_analysis)
-
-
-# In[104]:
-
 
 with open('../data/fox_twitter_articles_analysis', 'wb') as f:
     pickle.dump(twitter_articles_analysis, f)
 
-
-# In[ ]:
-
-
-
-
-
-# In[20]:
-
-
 af1=articles_analysis.to_json()
-
-
-# In[21]:
-
 
 with open('../data/fox_articles_analysis_js', 'w') as f:
     json.dump(af1, f)
-
-
-# In[ ]:
-
-
-
-
