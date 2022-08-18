@@ -1,4 +1,4 @@
-# Project Overview<br>
+Hi# Project Overview<br>
 <img src="Viz/fplog.png" align=center style="width: 700px;"/>
 FingerprintNews is an API that utilises the latest developments in Natural Langauge Processing to create a suite of tools to be used in newsrooms.<br>
 Its models can generate accurate headlines and tweets on the fly, detect potential bias in copy and guide social media content to maximise interactions. <br>
@@ -67,7 +67,7 @@ The first model is a rudimentary extractive model, to get an idea of how they ca
 
 The aim was therefore to create an inferential model which can actually learn contextual information and linguistic structure, with the headline and tweet summarizers merely the first of an array of journalistic tools to utilise this ability.<br>
 
-The first inferential model is an 'lstm', the type used before the rise in popularity of transformer models. The lstm model uses cells that store the state of model so that relationships of words that appear close together and far apart can be encoded, allowing us to feed in long articles.<br>
+The first inferential model is an 'lstm', the type used before the rise in popularity of transformer models. The lstm model uses cells that store the state of model so that relationships of words that appear close together and far apart can be learned, allowing us to feed in long articles.<br>
 <br>
 <br>
 **A repeating long-term short-term memory cell**
