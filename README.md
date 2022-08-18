@@ -24,7 +24,7 @@ In the same way the human body uses genetic code to build different parts, the m
 <img src="Viz/head.png" style="width: 700px;"/>
 <br>
 
-FingerpPrint can currently be used by journalists to instantly generate accurate and balanced headlines, by subeditors to identify when opinionated language is appearing in news stories, and by social media teams to quickly curate output for maximum reach.<br>
+FingerPrint can currently be used by journalists to instantly generate accurate and balanced headlines, by subeditors to identify when opinionated language is appearing in news stories, and by social media teams to quickly curate output for maximum reach.<br>
 
 But this is just the beginning, with boundless potential for more applications. <br>
 <br>
@@ -40,15 +40,15 @@ Data collection duties were shared across both platforms, with data shuttled bet
 
 The models were trained on 1.3 million news articles and 1.8 million tweets from five outlets: CNN, Fox News, The Guardian, Reuters and the BBC.<br>
 
-Free-to-use python library [snscrape](https://github.com/JustAnotherArchivist/snscrape), was used to scrape the tweets. It returns the tweet text, URL links within the tweet and metrics such as likes and retweets.
+Free-to-use python library [SNScrape](https://github.com/JustAnotherArchivist/snscrape), was used to scrape the tweets. It returns the tweet text, URL links within the tweet and metrics such as likes and retweets.
 
 Code for this is in *global_scripts/twitterScrape.py*, with the final dataframes for each outlet exported to Colab and concatenated.<br>
 
-For those able to afford $1500, the articles can all be retrieved from the [News Api](https://newsapi.org) module.<br>
+For those able to afford $1500, the articles can all be retrieved from the [News API](https://newsapi.org) module.<br>
 
 This example instead used the Internet [Wayback Machine](https://archive.org/web/) to retrieve the links to articles hosted on the outlet's homepage, going back to 2013.<br>
 
-These URLs were then used to scrape the actual article and retreive the text, headline, category, and date. Guardian articles were scraped using its free API.<br>
+These URLs were then used to scrape the actual article and retrieve the text, headline, category, and date. Guardian articles were scraped using its free API.<br>
 
 Code for this step in each outlet is in *pipe_x/scripts/x_scrape_py*, with the final dataframes exported to Colab and concatenated.<br>
 
@@ -200,14 +200,14 @@ Work will continue on the current tools to make them more accurate and to give u
 
 The headline model is pre-trained using a corpus of text. With more computing power, it would be good to diversify the training set to make sure in-built language prejudices are not continually propagated.<br>
 
-The model is fine tuned on a limited number of outlets but on many different styles of articles. It would perform better if we could train on more outlets, using a NewsAPI subscription, and make separate models for each main style of article.<br>
+The model is fine tuned on a limited number of outlets but on many different styles of articles. It would perform better if we could train on more outlets, using a News API subscription, and make separate models for each main style of article.<br>
 
-We will develop transformer models to power the opinion/news tool, and will also try and incoroprate other techniques into the model, most obviously Parts of Speech and Named Entity analysis.<br>
+We will develop transformer models to power the opinion/news tool, and will also try and incorporate other techniques into the model, most obviously Parts of Speech and Named Entity analysis.<br>
 
 The word vector visualisations are skewed by being trained on retweet predictions, and are under-developed as tweet summaries are short and not representative of general language use. Ideally, we should generate from articles.<br>
 
 We will also develop a BERT transformer version of the retweet predictor, it seems reasonable to assume that being able contextualize words and learn syntactic characteristics will offer a significant advantage.<br>
 
-The model should eventually incorportate image data too, as photographs attached to tweets are likely to be a driver of retweets. The model should also be analyzable in more granular detail, giving us a 'viral vocabulary' for each subject matter.<br>
+The model should eventually incorporate image data too, as photographs attached to tweets are likely to be a driver of retweets. The model should also be analysable in more granular detail, giving us a 'viral vocabulary' for each subject matter.<br>
 
 In the longer term, we are working on a tool that will collate the most salient details of a single news story as reported across various outlets, using a transformer model to extract the most relevant features. It will then flag up potentially absent contextual details for the individual reports.<br><br>
