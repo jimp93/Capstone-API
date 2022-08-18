@@ -1,4 +1,5 @@
-# Project Overview<img src="Viz/fing.jpg" align=center style="width: 100px;"/>
+# Project Overview<br>
+<img src="Viz/fplog.png" align=center style="width: 700px;"/>
 FingerprintNews is an API that utilises the latest developments in Natural Langauge Processing to create a suite of tools to be used in newsrooms.<br>
 Its models can generate accurate headlines and tweets on the fly, detect potential bias in copy and guide social media content to maximise interactions. <br>
 <br>
@@ -12,9 +13,9 @@ Trust in print media is at an all-time low, according to a 2022 Gallup poll. <br
 
 The industry has focussed heavily on so-called 'fake news', with fact-checking now a booming sector, but less attention has been paid to how the use of language has affected people's perception of the news media.<br>
 
-The latest generation of NLP 'tranformer' models, similar to those that power Google's search engine, are able to encode the inner workings of language with an increasing degree of complexity.<br>
+The latest generation of NLP 'transformer' models, similar to those that power Google's search engine, are able to encode the inner workings of language with an increasing degree of complexity.<br>
 
-In the same way the human body uses the genetic code to build different parts, the models can decode these language secrets and put them to use on various tasks, promising a new world of functionality and accountability within newsrooms.<br>
+In the same way the human body uses genetic code to build different parts, the models can decode these language secrets and put them to use on various tasks, promising a new world of functionality and accountability within newsrooms.<br>
 <br>
 
 **Visualisation of various linguistic relationships between words in an input sequence as learned by transformer model**
@@ -25,16 +26,13 @@ In the same way the human body uses the genetic code to build different parts, t
 
 FingerprintNews can currently be used by journalists to instantly generate accurate and balanced headlines, by subeditors to identify when opinionated language is appearing in news stories, and by social media teams to quickly curate output for maximum reach.<br>
 
-But this is just the beginning, with boundless potential for more applications to be added. 
-
-<br>
-<br>
+But this is just the beginning, with boundless potential for more applications. <br>
 
 # Code layout
 
 Given memory considerations, GitHub file size restrictions and the processing power of Google Colab, the code is split between GitHub and Colab. The Colab folder can be shared on request.<br>
 
-Data collection duties were shared across both platforms, with data shuttled between the two through the * *import_data* * and * *export_data* * folders in Colab. The rest of the code is on Colab.<br>
+Data collection duties were shared across both platforms, with data shuttled between the two through the *import_data* and *export_data* folders in Colab. The rest of the code is on Colab.<br>
 
 
 # The Data
@@ -43,7 +41,7 @@ The models were trained on 1.3 million news articles and 1.8 million tweets from
 
 Free-to-use python library [snscrape](https://github.com/JustAnotherArchivist/snscrape), was used to scrape the tweets. It returns the tweet text, URL links within the tweet and metrics such as likes and retweets.
 
-Code for this is in global_scripts/twitterScrape.py, with the final dataframes for each outlet exported to Colab and concatenated.<br>
+Code for this is in *global_scripts/twitterScrape.py*, with the final dataframes for each outlet exported to Colab and concatenated.<br>
 
 For those able to afford $1500, the articles can all be retrieved from the [News Api](https://newsapi.org) module.<br>
 
@@ -51,19 +49,19 @@ This example instead used the Internet [Wayback Machine](https://archive.org/web
 
 These URLs were then used to scrape the actual article and retreive the text, headline, category, and date. Guardian articles were scraped using its free api.<br>
 
-Code for this step in each outlet is in * *pipe_x/scripts/x_scrape_py* *, with the final dataframes expoted to Colab and concatenated.<br>
+Code for this step in each outlet is in *pipe_x/scripts/x_scrape_py*, with the final dataframes exported to Colab and concatenated.<br>
 
 The article and twitter datasets were then linked as below...<br>
 
 <img src="Viz/BreakingEven (2).jpg" style="width: 1000px;"/>
 
-The * *clean.eda* * scripts in each folder create another dataframe of features, for instance article text with no stopwords, which is then exported to Colab.<br>
+The *clean.eda* scripts in each folder create another dataframe of features, for instance article text with no stopwords, which is then exported to Colab.<br>
 
 
 # Methods
 
 ## Headline and tweet summarizers
-The four models are in the * *summarizer* * folder in Colab. <br>
+The four models are in the *summarizer* folder in Colab. <br>
 
 The first model is a rudimentary extractive model, to get an idea of how they can identify important passages in the text. But the model is unable to learn any complexities of language, thus serverly limiting its potential applications.<br>
 
@@ -88,7 +86,7 @@ The models actually used in the API are T5 transformer models developed by Googl
 
 Different 'heads' in the model learn different linguistic relationships, which can be visualised by the Bertviz module. Heads are grouped into layers, with each layer capturing more abstracted linguistic features.<br>
 
-Our understanding of these inner workings and ability to analyse them are currently limited, but the profound implications as our knowledge develops are not difficult to imagine.<br>
+Our understanding of these inner workings and ability to analyse them are currently limited, but the profound implications as it improves are not difficult to imagine.<br>
 <br>
 <br>
 **Linguistic relationship between article words and predicted headline word for one T5 layer**
@@ -150,17 +148,17 @@ The model is 88 percent succesful in identifying a news piece from an opinion ar
 
 Here is an example of a score generated from an article, and the SHAP visualisation explaining which words most influenced its prediction, with the red arrows indicating 'opinion' words.<br>
 
-* *First 3 pars of article text used in following examples:<br>
+*First 3 pars of article text used in following examples:<br>
 Sanctioned Russian oligarchs from Vladimir Putin's inner circle exploited a UK secrecy loophole left open by the government.<br>
 Arkady and Boris Rotenberg - judo partners of the Russian president - used a type of company that was not required to identify its real owners.<br>
-Ministers have acknowledged concerns that these companies, known as English Limited Partnerships (ELPs), have also been abused by criminals...* *<br><br>
+Ministers have acknowledged concerns that these companies, known as English Limited Partnerships (ELPs), have also been abused by criminals...*<br><br>
 
 **Waterfall plot of keywords in model prediction**<br>
 <img src="Viz/waterfall.jpg" style="width: 400px;"/><br><br>
 
 ## Retweet predictor
 <br>
-The model is 35 percent accurate in predicting how many retweets the tweet will receive, as defined in five categories. The figure is quite low, but is still substantially better than random guess, and it correctly flagged up almost half of tweets that went viral. It is to be expected the results are lower given the somewhat subjective nature retweet values.
+The model is 35 percent accurate in predicting how many retweets the tweet will receive, as defined in five categories. The figure is quite low, but is still substantially better than random guess, and it correctly flagged up more than half of tweets that went viral. It is to be expected the results are lower given the somewhat subjective nature retweet values.
 <br>
 <img src="Viz/tfidf_log.png" style="width: 700px;"/>
 <br>
@@ -176,7 +174,7 @@ The word vectors produced by more complex models can be plotted to show how diff
 
 # Conclusion
 
-The API generally produces accurate headlines in readable English.<br>
+The API generally produces accurate headlines.<br>
 
 The model's ability to learn the 'DNA' of language opens the door to multiple ways of trying to detect unbalanced reporting.<br>
 
@@ -184,13 +182,13 @@ The opinion-score generator is produced by a highly-accurate model, which can he
 
 The retweet predictor model is less accurate, but is a nevertheless a useful guide and tool in helping editors and journalist tailor coverage and tweets.<br>
 
-<img src="Viz/Feather-Of-Maat1.jpg" style="width: 200px;"/>
+<img src="Viz/door_light.jpg" align=center style="width: 500px;"/><br><br>
 
 # Next steps
 
 Turn the API into a web app and market to news consumers.<br>
 
-Develop more tools using built on the encoder/decoder model. Models in the development include one which gives a score of headline congurency, one that checks paraphrased quotes against the actual quotes and ensure they are fairly summarized and a sentiment analysis scorer for Named Entities, to see whether coverage of people and places is negative or positive in different outlets.<br>
+Develop more tools built on the encoder/decoder model. Models in the development include one which gives a score of headline congurence, one that checks paraphrased quotes against the actual quotes and ensure they are fairly summarized and a sentiment analysis scorer for Named Entities, to see whether coverage of people and places is negative or positive in different outlets.<br>
 
 Work will continue on the current tools to make them more accurate and to give us deeper insights.<br>
 
@@ -206,7 +204,4 @@ We will also develop a BERT transformer version of the retweet predictor, it see
 
 The model should eventually incorportate image data too, as photographs attached to tweets seem a likely driver of retweets. The model should also be analyzable in more granular detail, giving us a 'viral vocabulary' for each subject matter.<br>
 
-In the longer term, we could try and collate the most salient details of a single news story as reported across various outlets, using a transformer model to extract the most relevant features, and flag up potentially absent contextual details for each outlet's report.<br><br>
-<img src="Viz/door_light.jpg" align=center style="width: 500px;"/><br><br>
- 
- 
+In the longer term, we could try and collate the most salient details of a single news story as reported across various outlets, using a transformer model to extract the most relevant features, and flag up potentially absent contextual details for the individual reports.<br><br>
