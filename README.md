@@ -1,6 +1,6 @@
-Hi# Project Overview<br>
-<img src="Viz/fplog.png" align=center style="width: 700px;"/>
-FingerprintNews is an API that utilises the latest developments in Natural Langauge Processing to create a suite of tools to be used in newsrooms.<br>
+# Project Overview<br>
+<img src="Viz/fplog.png" align=center style="width: 700px;"/><br>
+FingerPrint is an API that utilises the latest developments in Natural Language Processing to create a suite of tools to be used in newsrooms.<br>
 Its models can generate accurate headlines and tweets on the fly, detect potential bias in copy and guide social media content to maximise interactions. <br>
 <br>
 
@@ -11,11 +11,11 @@ Trust in print media is at an all-time low, according to a 2022 Gallup poll. <br
 <img src="Viz/gall.jpg" style="width: 700px;"/>
 <br>
 
-The industry has focussed heavily on so-called 'fake news', with fact-checking now a booming sector, but less attention has been paid to how the use of language has affected people's perception of the news media.<br>
+The industry has focussed heavily on so-called 'fake news', with fact-checking now a booming sector, but less attention has been paid to how the use of language has affected perception of the news media.<br>
 
 The latest generation of NLP 'transformer' models, similar to those that power Google's search engine, are able to encode the inner workings of language with an increasing degree of complexity.<br>
 
-In the same way the human body uses genetic code to build different parts, the models can decode these language secrets and put them to use on various tasks, promising a new world of functionality and accountability within newsrooms.<br>
+In the same way the human body uses genetic code to build different parts, the models can decode these language secrets and put them to use on various tasks, opening the door to a new world of functionality and accountability within newsrooms.<br>
 <br>
 
 **Visualisation of various linguistic relationships between words in an input sequence as learned by transformer model**
@@ -24,20 +24,21 @@ In the same way the human body uses genetic code to build different parts, the m
 <img src="Viz/head.png" style="width: 700px;"/>
 <br>
 
-FingerprintNews can currently be used by journalists to instantly generate accurate and balanced headlines, by subeditors to identify when opinionated language is appearing in news stories, and by social media teams to quickly curate output for maximum reach.<br>
+FingerpPrint can currently be used by journalists to instantly generate accurate and balanced headlines, by subeditors to identify when opinionated language is appearing in news stories, and by social media teams to quickly curate output for maximum reach.<br>
 
 But this is just the beginning, with boundless potential for more applications. <br>
+<br>
 
 # Code layout
 
 Given memory considerations, GitHub file size restrictions and the processing power of Google Colab, the code is split between GitHub and Colab. The Colab folder can be shared on request.<br>
 
 Data collection duties were shared across both platforms, with data shuttled between the two through the *import_data* and *export_data* folders in Colab. The rest of the code is on Colab.<br>
-
+<br>
 
 # The Data
 
-The models were trained on 1.3 million news articles and 1.8 million tweets from five outlets: CNN, Fox News, The Gaurdian, Reuters and the BBC.<br>
+The models were trained on 1.3 million news articles and 1.8 million tweets from five outlets: CNN, Fox News, The Guardian, Reuters and the BBC.<br>
 
 Free-to-use python library [snscrape](https://github.com/JustAnotherArchivist/snscrape), was used to scrape the tweets. It returns the tweet text, URL links within the tweet and metrics such as likes and retweets.
 
@@ -47,7 +48,7 @@ For those able to afford $1500, the articles can all be retrieved from the [News
 
 This example instead used the Internet [Wayback Machine](https://archive.org/web/) to retrieve the links to articles hosted on the outlet's homepage, going back to 2013.<br>
 
-These URLs were then used to scrape the actual article and retreive the text, headline, category, and date. Guardian articles were scraped using its free api.<br>
+These URLs were then used to scrape the actual article and retreive the text, headline, category, and date. Guardian articles were scraped using its free API.<br>
 
 Code for this step in each outlet is in *pipe_x/scripts/x_scrape_py*, with the final dataframes exported to Colab and concatenated.<br>
 
@@ -56,18 +57,18 @@ The article and twitter datasets were then linked as below...<br>
 <img src="Viz/BreakingEven (2).jpg" style="width: 1000px;"/>
 
 The *clean.eda* scripts in each folder create another dataframe of features, for instance article text with no stopwords, which is then exported to Colab.<br>
-
+<br>
 
 # Methods
 
 ## Headline and tweet summarizers
 The four models are in the *summarizer* folder in Colab. <br>
 
-The first model is a rudimentary extractive model, to get an idea of how they can identify important passages in the text. But the model is unable to learn any complexities of language, thus serverly limiting its potential applications.<br>
+The first model is a rudimentary extractive model, to get an idea of how they can identify important passages in the text. But the model is unable to learn any complexities of language, thus severely limiting its potential applications.<br>
 
 The aim was therefore to create an inferential model which can actually learn contextual information and linguistic structure, with the headline and tweet summarizers merely the first of an array of journalistic tools to utilise this ability.<br>
 
-The first inferential model is an 'lstm', the type used before the rise in popularity of transformer models. The lstm model uses cells that store the state of model so that relationships of words that appear close together and far apart can be learned, allowing us to feed in long articles.<br>
+The first inferential model is an 'lstm', the type often used before the rise in popularity of transformer models. The lstm model uses cells that store the state of model so that relationships of words that appear close together and far apart can be learned, allowing us to feed in long articles.<br>
 <br>
 <br>
 **A repeating long-term short-term memory cell**
@@ -84,9 +85,9 @@ The model trained the article text against its headline. In production, the arti
 
 The models actually used in the API are T5 transformer models developed by Google. These models build on the lstm's capabilities, but are also able to encode words depending on their context, for instance learning the different meanings of words like 'bank' depending on other words in the sequence.<br>
 
-Different 'heads' in the model learn different linguistic relationships, which can be visualised by the Bertviz module. Heads are grouped into layers, with each layer capturing more abstracted linguistic features.<br>
+Different 'heads' in the model learn different linguistic relationships, which can be visualised by the [BertViz](https://github.com/jessevig/bertviz) module. Heads are stacked in layers, with each layer capturing more abstracted linguistic features.<br>
 
-Our understanding of these inner workings and ability to analyse them are currently limited, but the profound implications as it improves are not difficult to imagine.<br>
+Our understanding of these inner workings and ability to analyse them are currently limited, but the profound implications as this understanding improves are not difficult to envisage.<br>
 <br>
 <br>
 **Linguistic relationship between article words and predicted headline word for one T5 layer**
@@ -98,14 +99,17 @@ Our understanding of these inner workings and ability to analyse them are curren
 
 ## Opinion v news scorer
 
-This is a more traditional logistic model, which is trained to learn whether an article is tagged as opinion or news by the outlet given the words of the text. It returns a score out of 100, the higher the score the higher the probability it should be an opinion piece. <br>
+This is a more traditional logistic model, which is trained to learn whether an article is tagged as opinion or news by the outlet given the words of the text. It returns a score out of 100, the higher the score,= the higher the probability it should be an opinion piece. <br>
 
-**Wordcloud of opinion pieces**
+**Wordcloud of opinion pieces**<br>
 <img src="Viz/opinion.png" style="width: 500px;"/>
 
-The SHAP library is then used to visualise the words in each article that are most indicative of it being a news piece, and an opinion piece. This lightweight model can easily be incorporated into software used by journlaists to publish their copy, instantly flagging up words that may be inappropriate in a news piece.<br>
+The [SHAP](https://github.com/slundberg/shap) library is then used to visualise which words in each article are most indicative of it being a news piece, and which are most indicative of an opinion piece.<br>
+
+This lightweight model can easily be incorporated into existing software used by journalists to publish their copy, instantly flagging up words that may be inappropriate in a news piece.<br>
 
 Initial attempts to use transformers for this job generated poor results, but with more resources to tune the model, we should get not only more accurate results, but more ways of identifying features of manipulative language.<br>
+<br>
 
 ## Retweet predictor
 
@@ -114,14 +118,12 @@ This is also a traditional logistic model, which is trained by comparing the twe
 **Wordcloud of viral tweets**<br>
 <img src="Viz/all_4_wordcloud1.png" style="width: 500px;"/>
 
-The LIME library is then used to visualise the words that tend to increase retweets, which can be used by social media teams in deciding which stories to tweet, and how to word them.<br>
+The [LIME](https://github.com/marcotcr/lime) library is then used to visualise words that tend to increase retweets, which can be used by social media teams in deciding which stories to tweet, and how to word them.<br>
 
-Again, initial attempts to use transformers didn't generate usable results, but there is no reason why it shouldn't produce better results and deeper analysis once devloped.<br>
-<br>
+Again, initial attempts to use a transformer model didn't generate usable results, but there is no reason why it shouldn't produce better results and deeper analysis once developed.<br>
 <br>
 
 # Headline Results
-<br> 
 
 ## Headline and tweet summarizers<br>
 Here are some examples of headlines generated by the model, compared with the actual headline<br>
@@ -133,7 +135,10 @@ Here are some examples of headlines generated by the model, compared with the ac
 **Actual headline-** lessons to learn from uk’s 1956 clean air act<br>
 **Predicted headline-** 65 years after the uk's 1956 clean air act, what can we learn?<br>
 
-The T5 model performs substantially better across various measurment metrics than the lstm model. The headline model performs better than the tweet model.
+<br>
+The full datasets of 10,000 predicted headlines and tweets can be found in the *headline_pred_df* and *tweet_pred_df* files in the GitHub repository.<br>
+
+The T5 model performs substantially better across various measurement metrics than the lstm model. The headline model performs better than the tweet model.
 <br>
 
 **Performance score of summarizer models using various Rouge metrics**
@@ -141,7 +146,6 @@ The T5 model performs substantially better across various measurment metrics tha
 <br><br>
 
 ## Opinion v news scorer
-<br>
 The model is 88 percent succesful in identifying a news piece from an opinion article.
 <br>
 <img src="Viz/cmatrix.png" style="width: 700px;"/>
@@ -157,18 +161,18 @@ Ministers have acknowledged concerns that these companies, known as English Limi
 <img src="Viz/waterfall.jpg" style="width: 400px;"/><br><br>
 
 ## Retweet predictor
-<br>
-The model is 35 percent accurate in predicting how many retweets the tweet will receive, as defined in five categories. The figure is quite low, but is still substantially better than random guess, and it correctly flagged up more than half of tweets that went viral. It is to be expected the results are lower given the somewhat subjective nature retweet values.
+The model is 35 percent accurate in predicting how many retweets the tweet will receive, defined in five categories.<br> 
+The figure is quite low, but is still substantially better than random guess, and it correctly flagged up more than half of tweets that went viral. It is to be expected the results are lower given the somewhat subjective nature retweet values.
 <br>
 <img src="Viz/tfidf_log.png" style="width: 700px;"/>
 <br>
 Here is an example of a retweet score generated from a tweet linked to the above article, and the LIME visualisation explaining which words most influenced the prediction.<br>
-Virality-'viral'<br>
+<br>
 <img src="Viz/twit_vir.jpg" style="width: 700px;"/><br><br>
 
 The word vectors produced by more complex models can be plotted to show how different outlets use words.<br>
 
-**Closest word vector to 'liverpool' as learned by model on articles**<br>
+**Closest word vectors to 'liverpool' as learned by model on BBC articles**<br>
 <img src="Viz/wv_liv.jpg" style="width: 700px;"/><br><br>
 
 
@@ -180,7 +184,7 @@ The model's ability to learn the 'DNA' of language opens the door to multiple wa
 
 The opinion-score generator is produced by a highly-accurate model, which can help identify 'red-flag' words.<br>
 
-The retweet predictor model is less accurate, but is a nevertheless a useful guide and tool in helping editors and journalist tailor coverage and tweets.<br>
+The retweet predictor model is less accurate, but is nevertheless a useful guide and tool in helping editors and journalist tailor coverage and tweets.<br>
 
 <img src="Viz/door_light.jpg" align=center style="width: 500px;"/><br><br>
 
@@ -188,7 +192,9 @@ The retweet predictor model is less accurate, but is a nevertheless a useful gui
 
 Turn the API into a web app and market to news consumers.<br>
 
-Develop more tools built on the encoder/decoder model. Models in the development include one which gives a score of headline congurence, one that checks paraphrased quotes against the actual quotes and ensure they are fairly summarized and a sentiment analysis scorer for Named Entities, to see whether coverage of people and places is negative or positive in different outlets.<br>
+Develop more tools built on the encoder/decoder model. Models in development include one which gives a score of headline congruence, one that checks paraphrased quotes against the actual quotes to ensure they are fairly summarized and a sentiment analysis scorer for Named Entities, to see how skewed coverage of people and places is in different outlets.<br>
+
+T5 models are also being trained on various different types of technical articles in order to give journalists instant summaries of the key findings in complex releases.
 
 Work will continue on the current tools to make them more accurate and to give us deeper insights.<br>
 
@@ -200,8 +206,8 @@ We will develop transformer models to power the opinion/news tool, and will also
 
 The word vector visualisations are skewed by being trained on retweet predictions, and are under-developed as tweet summaries are short and not representative of general language use. Ideally, we should generate from articles.<br>
 
-We will also develop a BERT transformer version of the retweet predictor, it seems reasonable to assume that being able contextualize words and learn syntactic characteristics would be a significant advantage.<br>
+We will also develop a BERT transformer version of the retweet predictor, it seems reasonable to assume that being able contextualize words and learn syntactic characteristics will offer a significant advantage.<br>
 
-The model should eventually incorportate image data too, as photographs attached to tweets seem a likely driver of retweets. The model should also be analyzable in more granular detail, giving us a 'viral vocabulary' for each subject matter.<br>
+The model should eventually incorportate image data too, as photographs attached to tweets are likely to be a driver of retweets. The model should also be analyzable in more granular detail, giving us a 'viral vocabulary' for each subject matter.<br>
 
-In the longer term, we could try and collate the most salient details of a single news story as reported across various outlets, using a transformer model to extract the most relevant features, and flag up potentially absent contextual details for the individual reports.<br><br>
+In the longer term, we are working on a tool that will collate the most salient details of a single news story as reported across various outlets, using a transformer model to extract the most relevant features. It will then flag up potentially absent contextual details for the individual reports.<br><br>
