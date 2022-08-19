@@ -115,6 +115,7 @@ Initial attempts to use transformers for this job generated poor results, but wi
 This is also a traditional logistic model, which is trained by comparing the tweet text with how many retweets it received.<br>
 
 **Wordcloud of viral tweets**<br>
+<br>
 <img src="Viz/all_4_wordcloud1.png" style="width: 500px;"/>
 
 The [LIME](https://github.com/marcotcr/lime) library is then used to visualise words that tend to increase retweets, which can be used by social media teams in deciding which stories to tweet, and how to word them.<br>
