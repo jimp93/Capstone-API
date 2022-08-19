@@ -17,7 +17,7 @@ The latest generation of NLP 'transformer' models, similar to those that power G
 In the same way the human body uses genetic code to build different parts, the models can decode these language secrets and put them to use on various tasks, opening the door to a new world of functionality and accountability within newsrooms.<br>
 <br>
 
-**Visualisation of various linguistic relationships between words in an input sequence as learned by transformer model**
+**Visualisation of linguistic relationships learned by one attention head in one layer of transformer model**
 <br>
 
 <img src="Viz/bdna.png" align=center style="width: 700px;"/><br>
