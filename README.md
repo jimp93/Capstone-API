@@ -4,7 +4,7 @@ FingerPrint is an API that utilises the latest developments in Natural Language 
 Its models can generate accurate headlines and tweets on the fly, detect potential bias in copy and guide social media content to maximise interactions. <br>
 <br>
 
-# Business Problem
+<img src="Viz/cv_bp.png" align=center style="width: 700px;"/><br>
 
 Trust in print media is at an all-time low, according to a 2022 Gallup poll. <br>
 
