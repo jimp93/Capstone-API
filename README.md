@@ -1,5 +1,5 @@
 # Project Overview<br>
-<img src="Viz/fplog.png" align=center style="width: 700px;"/><br>
+<img src="Viz/fplog1.png" align=center style="width: 700px;"/><br>
 FingerPrint is an API that utilises the latest developments in Natural Language Processing to create a suite of tools to be used in newsrooms.<br>
 Its models can generate accurate headlines and tweets on the fly, detect potential bias in copy and guide social media content to maximise interactions. <br>
 <br>
