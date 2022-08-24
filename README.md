@@ -17,7 +17,7 @@ The latest generation of NLP 'transformer' models, similar to those that power G
 In the same way the human body uses genetic code to build different parts, the models can decode these language secrets and put them to use on various tasks, opening the door to a new world of functionality and accountability within newsrooms.<br>
 <br>
 
-**Visualisation of linguistic relationships learned by one attention head in one layer of transformer model**
+**Visualisation of linguistic relationships computed by one attention head in one layer of transformer model**
 <br>
 
 <img src="Viz/bdna.png" align=center style="width: 700px;"/><br>
@@ -176,9 +176,7 @@ The word vectors produced by more complex models can be plotted to show how diff
 **Closest word vectors to 'liverpool' as learned by model on BBC articles**<br>
 <img src="Viz/wv_liv.jpg" style="width: 700px;"/><br><br>
 
-
 <img src="Viz/cv_c.png" align=center style="width: 700px;"/><br>
-
 The API generally produces accurate headlines.<br>
 
 The model's ability to learn the 'DNA' of language opens the door to multiple ways of trying to detect unbalanced reporting.<br>
@@ -187,15 +185,17 @@ The opinion-score generator is produced by a highly-accurate model, which can he
 
 The retweet predictor model is less accurate, but is nevertheless a useful guide and tool in helping editors and journalist tailor coverage and tweets.<br>
 
-<img src="Viz/door_light.jpg" align=center style="width: 500px;"/><br><br>
-
 <img src="Viz/cv_ns.png" align=center style="width: 700px;"/><br>
 
 Turn the API into a web app and market to news consumers.<br>
 
 Develop more tools built on the encoder/decoder model. Models in development include one which gives a score of headline congruence, one that checks paraphrased quotes against the actual quotes to ensure they are fairly summarized and a sentiment analysis scorer for Named Entities, to see how skewed coverage of people and places is in different outlets.<br>
 
-T5 models are also being trained on various different types of technical articles in order to give journalists instant summaries of the key findings in complex releases.
+T5 models are also being trained on various different types of technical articles in order to give journalists instant summaries of the key findings in complex releases.<br>
+<br>
+
+
+<img src="Viz/door_light.jpg" align=center style="width: 500px;"/><br><br>
 
 Work will continue on the current tools to make them more accurate and to give us deeper insights.<br>
 
