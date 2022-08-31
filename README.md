@@ -179,11 +179,15 @@ The word vectors produced by more complex models can be plotted to show how diff
 <img src="Viz/cv_c.png" align=center style="width: 700px;"/><br>
 The API generally produces accurate headlines.<br>
 
+The T5 headline model is the best performing summarizer with a Rouge1 f-score of 31.5 percent.<br>
+
+This is followed by the T5 tweet summarizer, which has a Rouge1 f-score of 25%, with the LSTM on 19%.<br>
+
 The model's ability to learn the 'DNA' of language opens the door to multiple ways of trying to detect unbalanced reporting.<br>
 
-The opinion-score generator is produced by a highly-accurate model, which can help identify 'red-flag' words.<br>
+The opinion-score generator is produced by a model that correctly predicted 88% of opinion/news tags. This model can help identify 'red-flag' words that indicate bias.<br>
 
-The retweet predictor model is less accurate, but is nevertheless a useful guide and tool in helping editors and journalist tailor coverage and tweets.<br>
+The retweet predictor model is less accurate at 35%, but correctly flagged up 55% of viral tweets and is nevertheless a useful guide and tool in helping editors and journalist tailor coverage and tweets.<br>
 
 <img src="Viz/cv_ns.png" align=center style="width: 700px;"/><br>
 
