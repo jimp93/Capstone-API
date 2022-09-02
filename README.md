@@ -63,7 +63,7 @@ The *clean.eda* scripts in each folder create another dataframe of features, for
 ## Headline and tweet summarizers
 The four models are in the *summarizer* folder in Colab. <br>
 
-The first model is a rudimentary extractive model, to get an idea of how they can identify important passages in the text. But the model is unable to learn any complexities of language, thus severely limiting its potential applications.<br>
+The first model is a rudimentary extractive model, drawn from this [example](https://medium.com/geekculture/neural-machine-translation-using-sequence-to-sequence-model-164a5905bcd7) to get an idea of how they can identify important passages in the text. But the model is unable to learn any complexities of language, thus severely limiting its potential applications.<br>
 
 The aim was therefore to create an inferential model which can actually learn contextual information and linguistic structure, with the headline and tweet summarizers merely the first of an array of journalistic tools to utilise this ability.<br>
 
@@ -81,6 +81,11 @@ The first inferential model is an 'lstm', the type often used before the rise in
 <br>
 
 The model trained the article text against its headline. In production, the article text is encoded by the trained model, and then decoded to generate a predicted headline, one word at a time.<br>
+
+The process of vocabulary embedding and the model architecture were drawn heavily from these two sources.<br>
+
+[embeddings](https://github.com/llSourcell/How_to_make_a_text_summarizer/blob/master/vocabulary-embedding.ipynb)<br>
+[architecture](https://medium.com/geekculture/neural-machine-translation-using-sequence-to-sequence-model-164a5905bcd7)<br>
 
 The models actually used in the API are T5 transformer models developed by Google. These models build on the lstm's capabilities, but are also able to encode words depending on their context, for instance learning the different meanings of words like 'bank' depending on other words in the sequence.<br>
 
