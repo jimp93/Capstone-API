@@ -116,7 +116,7 @@ Our understanding of these inner workings and ability to analyse them are curren
 
 ## Opinion v news scorer
 
-This is a more traditional logistic model, which is trained to learn whether an article is tagged as opinion or news by the outlet given the words of the text. It returns a score out of 100, the higher the score,= the higher the probability it should be an opinion piece. <br>
+This is a more traditional logistic model, which is trained to learn whether an article is tagged as opinion or news by the outlet given the words of the text. It returns a score out of 100, the higher the score, the higher the probability it should be an opinion piece. <br>
 
 **Wordcloud of opinion pieces**<br>
 <br>
