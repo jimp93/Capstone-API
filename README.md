@@ -12,7 +12,9 @@ Trust in print media is at an all-time low, according to a 2022 Gallup poll. <br
 
 The industry has focussed heavily on so-called 'fake news', with fact-checking now a booming sector, but less attention has been paid to how the use of language has affected perception of the news media.<br>
 
-AI is going to be a vital tool in tackling these problems, with machine-learning models set to be a fixturein newsrooms of the future. FingerPrint is a first step in this direction.<br>
+A market that incentizises speed over accuracy is also a growing concern.<br>
+
+AI is going to be a vital tool in tackling these problems, with machine-learning models set to be a fixture in newsrooms of the future. FingerPrint is a first step in this direction.<br>
 
 The latest generation of NLP 'transformer' models, similar to those that power Google's search engine, are able to encode the inner workings of language with an increasing degree of complexity.<br>
 
