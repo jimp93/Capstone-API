@@ -95,7 +95,7 @@ The models actually used in the API are T5 transformer models developed by Googl
 
 They are based on the transformer architecture, as illustrated below...<br>
 <br>
-<img src="Viz/trans.png" align=center style="width: 700px;"/>
+<img src="Viz/trans.png" align=center style="width: 400px;"/>
 <br>
 <br>
 
