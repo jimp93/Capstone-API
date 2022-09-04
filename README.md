@@ -102,7 +102,7 @@ They are based on the transformer architecture, as illustrated below...<br>
 
 Weights connecting different 'heads' in the model allow them to learn different linguistic relationships, which can be visualised by the [BertViz](https://github.com/jessevig/bertviz) module. Heads are stacked in layers, with each layer capturing more abstracted linguistic features.<br>
 
-They are pre-trained by being made to predict masked words ([T5s actually mask multiple consecutive words](https://ai.googleblog.com/2020/02/exploring-transfer-learning-with-t5.html), so they predicts strings rather than individual words), and then we can fine tune them on individual tasks.<br>
+They are pre-trained by being made to predict masked words ([T5s actually mask multiple consecutive words](https://ai.googleblog.com/2020/02/exploring-transfer-learning-with-t5.html), so they predict strings rather than individual words), and then we can fine tune them on individual tasks.<br>
 
 Our understanding of these inner workings and ability to analyse them are currently limited, but the profound implications as this understanding improves are not difficult to envisage.<br>
 <br>
