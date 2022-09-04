@@ -93,6 +93,12 @@ The process of vocabulary embedding and the model architecture were drawn heavil
 
 The models actually used in the API are T5 transformer models developed by Google. These models build on the lstm's capabilities, but are also able to encode words depending on their context, for instance learning the different meanings of words like 'bank' depending on other words in the sequence.<br>
 
+They are based on the transformer architecture, as illustrated below...<br>
+<br>
+<img src="Viz/trans.png" align=center style="width: 700px;"/>
+<br>
+<br>
+
 Weights connecting different 'heads' in the model allow them to learn different linguistic relationships, which can be visualised by the [BertViz](https://github.com/jessevig/bertviz) module. Heads are stacked in layers, with each layer capturing more abstracted linguistic features.<br>
 
 They are pre-trained by being made to predict masked words ([T5s actually mask multiple consecutive words](https://ai.googleblog.com/2020/02/exploring-transfer-learning-with-t5.html), so they predicts strings rather than individual words), and then we can fine tune them on individual tasks.<br>
