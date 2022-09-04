@@ -97,6 +97,7 @@ They are based on the transformer architecture, as illustrated below...<br>
 <br>
 <img src="Viz/trans.png" align=center style="width: 400px;"/>
 <br>
+(Source : https://arxiv.org/abs/1706.03762)
 <br>
 
 Weights connecting different 'heads' in the model allow them to learn different linguistic relationships, which can be visualised by the [BertViz](https://github.com/jessevig/bertviz) module. Heads are stacked in layers, with each layer capturing more abstracted linguistic features.<br>
