@@ -226,7 +226,7 @@ Work will continue on the current tools to make them more accurate and to give u
 
 The headline model is pre-trained using a corpus of text. With more computing power, it would be good to diversify the training set to make sure in-built language prejudices are not continually propagated.<br>
 
-The model is fine tuned on a limited number of outlets but on many different styles of articles. It would perform better if we could train on more outlets, using a News API subscription, and make separate models for each main style of article.<br>
+The model is fine tuned on a limited number of outlets but on many different styles of articles. It would perform better if we could train on more outlets (ie ones behind paywalls), using a News API subscription, and make separate models for each main style of article.<br>
 
 We will develop transformer models to power the opinion/news tool, and will also try and incorporate other techniques into the model, most obviously Parts of Speech and Named Entity analysis.<br>
 
@@ -235,5 +235,7 @@ The word vector visualisations are skewed by being trained on retweet prediction
 We will also develop a BERT transformer version of the retweet predictor, it seems reasonable to assume that being able contextualize words and learn syntactic characteristics will offer a significant advantage.<br>
 
 The model should eventually incorporate image data too, as photographs attached to tweets are likely to be a driver of retweets. The model should also be analysable in more granular detail, giving us a 'viral vocabulary' for each subject matter.<br>
+
+The multilingual capacity of transformer models means that the tools they power can easily be adapted to work in newsrooms that produce multilingual copy, such as international news agencies. <br>
 
 In the longer term, we are working on a tool that will collate the most salient details of a single news story as reported across various outlets, using a transformer model to extract the most relevant features. It will then flag up potentially absent contextual details for the individual reports.<br><br>
