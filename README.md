@@ -176,6 +176,9 @@ Sanctioned Russian oligarchs from Vladimir Putin's inner circle exploited a UK s
 Arkady and Boris Rotenberg - judo partners of the Russian president - used a type of company that was not required to identify its real owners.<br>
 Ministers have acknowledged concerns that these companies, known as English Limited Partnerships (ELPs), have also been abused by criminals...*<br><br>
 
+Opinion Score 39.4%<br>
+<br>
+
 **Waterfall plot of keywords in model prediction**<br>
 <img src="Viz/waterfall.jpg" style="width: 400px;"/><br><br>
 
