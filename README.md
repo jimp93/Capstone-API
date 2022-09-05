@@ -29,7 +29,7 @@ In the same way the human body uses genetic code to build different parts, the m
 
 FingerPrint can currently be used by journalists to instantly generate accurate and balanced headlines, by subeditors to identify when opinionated language is appearing in news stories, and by social media teams to quickly curate output for maximum reach.<br>
 
-But this is just the beginning, with boundless potential for more applications. <br>
+But this is just the beginning, with boundless potential for more applications (see [appendix]("Appendix.docx"). <br>
 <br>
 
 <img src="Viz/cv_cl.png" align=center style="width: 700px;"/><br>
