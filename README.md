@@ -14,7 +14,7 @@ The industry has focussed heavily on so-called 'fake news', with fact-checking n
 
 A market that incentivizes speed over accuracy is also a growing concern.<br>
 
-AI is going to be a vital tool in tackling these problems, with machine-learning models set to be a fixture in newsrooms of the future. FingerPrint is a first step in this direction.<br>
+AI is going to be a vital tool in tackling these problems, with machine-learning models set to be a fixture in newsrooms of the future. FingerPrint is a first step in that direction.<br>
 
 The latest generation of NLP 'transformer' models, similar to those that power Google's search engine, are able to encode the inner workings of language with an increasing degree of complexity.<br>
 
