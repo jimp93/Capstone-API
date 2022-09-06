@@ -41,7 +41,7 @@ Data collection duties were shared across both platforms, with data shuttled bet
 
 <img src="Viz/cv_d.png" align=center style="width: 700px;"/><br>
 
-The models were trained on 1.4 million news articles and 2 million tweets from five outlets: CNN, Fox News, The Guardian, Reuters and the BBC.<br>
+The models were trained using 1.4 million news articles and 2 million tweets from five outlets: CNN, Fox News, The Guardian, Reuters and the BBC.<br>
 
 Free-to-use python library [SNScrape](https://github.com/JustAnotherArchivist/snscrape), was used to scrape the tweets. It returns the tweet text, URL links within the tweet and metrics such as likes and retweets.
 
