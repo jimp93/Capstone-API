@@ -71,7 +71,7 @@ The first model is a rudimentary extractive model, drawn from this [example](htt
 
 The aim was therefore to create an abstractive summarizer which can actually learn contextual information and linguistic structure, with the headline and tweet summarizers merely the first of an array of journalistic tools to utilise this ability.<br>
 
-The first inferential model is an 'lstm', the type often used before the rise in popularity of transformer models. The lstm model uses cells that store the state of model so that relationships of words that appear close together and far apart can be learned, allowing us to feed in long articles.<br>
+The first abstractive model is an 'lstm', the type often used before the rise in popularity of transformer models. The lstm model uses cells that store the state of model so that relationships of words that appear close together and far apart can be learned, allowing us to feed in long articles.<br>
 <br>
 <br>
 **A repeating long-term short-term memory cell**
