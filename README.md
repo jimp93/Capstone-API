@@ -131,7 +131,7 @@ Initial attempts to use transformers for this job generated poor results, but wi
 
 ## Retweet predictor
 
-This is also a traditional logistic model, which is trained by comparing the tweet text with how many retweets it received.<br>
+This is also a traditional logistic model, which predicts how many retweets a tweet will get (split into five categories of 'virality') given the body of the tweet. It is trained by comparing a tweet's text against the number of retweets it received.<br>
 
 **Wordcloud of viral tweets**<br>
 <br>
