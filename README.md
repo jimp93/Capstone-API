@@ -65,7 +65,7 @@ The *clean.eda* scripts in each folder create another dataframe of features, for
 <img src="Viz/cv_m.png" align=center style="width: 700px;"/><br>
 
 ## Headline and tweet summarizers
-The four models from which the final two are drawn are in the *summarizer* folder in Colab. <br>
+The four summarizer models from which the final two are drawn are in the *summarizer* folder in Colab. <br>
 
 The first model is a rudimentary extractive model, drawn from this [example](https://medium.com/geekculture/neural-machine-translation-using-sequence-to-sequence-model-164a5905bcd7) to get an idea of how they can identify important passages in the text. But the model is unable to learn any complexities of language, thus severely limiting its potential applications.<br>
 
