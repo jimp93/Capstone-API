@@ -91,7 +91,7 @@ The process of vocabulary embedding and the model architecture were drawn heavil
 [embeddings](https://github.com/llSourcell/How_to_make_a_text_summarizer/blob/master/vocabulary-embedding.ipynb)<br>
 [architecture](https://medium.com/geekculture/neural-machine-translation-using-sequence-to-sequence-model-164a5905bcd7)<br>
 
-The models actually used in the API are T5 transformer models developed by Google. These models build on the lstm's capabilities, but are also able to encode words depending on their context, for instance learning the different meanings of words like 'bank' depending on other words in the sequence.<br>
+The models actually used in the API are T5 transformer models developed by Google. These models build on the lstm's capabilities, but are also able to encode words depending on their context, for instance learning the different meanings of words like 'bank' depending on other words in the sequence, and encoding the relative positions of words.<br>
 
 They are based on the transformer architecture, as illustrated below...<br>
 <br>
@@ -198,7 +198,7 @@ The word vectors produced by more complex models can be plotted to show how diff
 <img src="Viz/wv_liv.jpg" style="width: 700px;"/><br><br>
 
 <img src="Viz/cv_c.png" align=center style="width: 700px;"/><br>
-The API generally produces accurate headlines.<br>
+The API generally produces accurate headlines and usable tweets.<br>
 
 The T5 headline model is the best performing summarizer with a Rouge1 f-score of 31.5%.<br>
 
