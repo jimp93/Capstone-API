@@ -1,5 +1,5 @@
 <img src="Viz/cv_po.png" align=center style="width: 700px;"/><br>
-FingerPrint is an [API](https://github.com/jimp93/Capstone-API/blob/main/Article%20API.docx) that utilises the latest developments in Natural Language Processing to create a suite of tools to be used in newsrooms.<br>
+FingerPrint is an [API](https://github.com/jimp93/Capstone-API/blob/main/ArticleAnalyzerAPI.docx) that utilises the latest developments in Natural Language Processing to create a suite of tools to be used in newsrooms.<br>
 Its models can generate accurate headlines and tweets on the fly, detect potential bias in copy and guide social media content to maximise interactions. <br>
 <br>
 
