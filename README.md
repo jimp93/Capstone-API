@@ -69,7 +69,7 @@ The four summarizer models from which the final two are drawn are in the *summar
 
 The first model is a rudimentary extractive model, drawn from this [example](https://medium.com/geekculture/neural-machine-translation-using-sequence-to-sequence-model-164a5905bcd7) to get an idea of how they can identify important passages in the text. But the model is unable to learn any complexities of language, thus severely limiting its potential applications.<br>
 
-The aim was therefore to create an inferential model which can actually learn contextual information and linguistic structure, with the headline and tweet summarizers merely the first of an array of journalistic tools to utilise this ability.<br>
+The aim was therefore to create an abstractive summarizer which can actually learn contextual information and linguistic structure, with the headline and tweet summarizers merely the first of an array of journalistic tools to utilise this ability.<br>
 
 The first inferential model is an 'lstm', the type often used before the rise in popularity of transformer models. The lstm model uses cells that store the state of model so that relationships of words that appear close together and far apart can be learned, allowing us to feed in long articles.<br>
 <br>
