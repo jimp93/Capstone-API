@@ -18,7 +18,7 @@ AI is going to be a vital tool in tackling these problems, with machine-learning
 
 The latest generation of NLP 'transformer' models, similar to those that power [Google's search engine](https://blog.google/products/search/search-language-understanding-bert/), are able to encode the inner workings of language with an increasing degree of complexity.<br>
 
-Like the way the human body uses genetic code to build different parts, the models can decode these language secrets and apply them to various tasks, opening the door to a new world of functionality and accountability within newsrooms.<br>
+Like a human body using genetic code to build different parts, the models can decode these language secrets and apply them to various tasks, opening the door to a new world of functionality and accountability within newsrooms.<br>
 <br>
 
 **Visualisation of linguistic relationships computed by one attention head in one layer of transformer model**
