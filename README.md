@@ -37,6 +37,8 @@ But this is just the beginning, with boundless potential for more applications (
 Given memory considerations, GitHub file size restrictions and the processing power of Google Colab, the code is split between GitHub and Colab. The Colab folder can be shared on request.<br>
 
 Data collection duties were shared across both platforms, with data shuttled between the two through the *import_data* and *export_data* folders in Colab. The rest of the code is on Colab.<br>
+
+Instructions on which files to run in which order to reproduce the data collection process can be found [here](https://github.com/jimp93/Capstone-API/blob/main/CapDataColl.rtf).
 <br>
 
 <img src="Viz/cv_d.png" align=center style="width: 700px;"/><br>
